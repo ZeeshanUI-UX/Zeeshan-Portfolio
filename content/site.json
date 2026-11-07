@@ -258,11 +258,20 @@
     "items": [
       {
         "name": "Ramsha",
-        "role": "MERN Stack developer",
-        "rating": 5,
+        "role": "MERN Slack developer",
+        "rating": 3,
         "visible": true,
         "text": [
-          "He is good boy. HE is annoying person in the world"
+          "He is good boy"
+        ]
+      },
+      {
+        "name": "Ayesha",
+        "role": "Artist",
+        "rating": 4,
+        "visible": true,
+        "text": [
+          "When you get one, go to Testimonials → Add testimonial in your dashboard. Enter the person’s name, role and words, then Save & publish. That plus the invitation card makes two, and the arrows appear."
         ]
       },
       {
@@ -271,16 +280,7 @@
         "rating": 5,
         "visible": true,
         "text": [
-          "Zeeshan Bro is good in working. ompanies and quotes are invented, and none of those people said those things. On a portfolio"
-        ]
-      },
-      {
-        "name": "Ayesha",
-        "role": "Artist",
-        "rating": 5,
-        "visible": true,
-        "text": [
-          "Hi, there When you get one, go to Testimonials → Add testimonial in your dashboard. Enter the person’s name, role and words, then Save & publish. That plus the invitation card makes two, and the arrows appear."
+          "companies and quotes are invented, and none of those people said those things. On a portfolio"
         ]
       }
     ],
