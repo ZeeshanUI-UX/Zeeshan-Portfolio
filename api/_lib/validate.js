@@ -108,7 +108,7 @@ export function validateSite(s) {
   return {
     person: { name: t(s.person?.name, 'Your name', 80, true), jobTitle: t(s.person?.jobTitle, 'Job title', 80, true), worksFor: t(s.person?.worksFor, 'Company', 80), country: t(s.person?.country, 'Country code', 4) },
     seo: { title: t(s.seo?.title, 'Page title', 120, true), description: t(s.seo?.description, 'Search description', 300), shareDescription: t(s.seo?.shareDescription, 'Share description', 300), ogImage: link(s.seo?.ogImage, 'Share image') },
-    links: { email: t(s.links?.email, 'Email', 120, true), instagram: link(s.links?.instagram, 'Instagram link'), linkedin: link(s.links?.linkedin, 'LinkedIn link'), behance: link(s.links?.behance, 'Behance link'), x: link(s.links?.x, 'X link') },
+    links: { email: t(s.links?.email, 'Email', 120, true), instagram: link(s.links?.instagram, 'Instagram link'), linkedin: link(s.links?.linkedin, 'LinkedIn link'), behance: link(s.links?.behance, 'Behance link'), x: link(s.links?.x, 'X link'), meeting: link(s.links?.meeting, 'Meeting link') },
     projectMenuBehance: Boolean(s.projectMenuBehance),
     hero: {
       script: t(s.hero?.script, 'Hero script line', 40), title: t(s.hero?.title, 'Hero heading', 40, true), ariaLabel: t(s.hero?.ariaLabel, 'Hero heading (screen readers)', 120),
@@ -150,6 +150,7 @@ export function validateSite(s) {
       eyebrow: t(s.contact?.eyebrow, 'Contact label', 60), titleA: t(s.contact?.titleA, 'Contact heading', 30), titleB: t(s.contact?.titleB, 'Contact heading (grey part)', 30),
       text: list(s.contact?.text || [], 'Contact text', 3).map((p, k) => t(p, `Contact line ${k + 1}`, 200)),
       button: t(s.contact?.button, 'Contact button', 30), buttonActive: t(s.contact?.buttonActive, 'Contact button (clicked)', 30), copyright: t(s.contact?.copyright, 'Copyright line', 80),
+      buttonToMeeting: Boolean(s.contact?.buttonToMeeting), dockToMeeting: Boolean(s.contact?.dockToMeeting),
     },
   };
 }

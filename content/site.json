@@ -16,7 +16,8 @@
     "instagram": "https://www.instagram.com/mshanm80/",
     "linkedin": "https://www.linkedin.com/in/zeeshan-munawar-uiux/",
     "behance": "https://www.behance.net/zeeshan8082",
-    "x": "https://x.com/Mrzeesh19117365"
+    "x": "https://x.com/Mrzeesh19117365",
+    "meeting": "https://cal.com/muhammad-zeeshan-sggbw3/secret"
   },
   "projectMenuBehance": false,
   "hero": {
@@ -258,8 +259,8 @@
     "items": [
       {
         "name": "Ramsha",
-        "role": "MERN Slack developer",
-        "rating": 3,
+        "role": "MERN Stack developer",
+        "rating": 5,
         "visible": true,
         "text": [
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. "
@@ -288,6 +289,8 @@
     ],
     "button": "Contact Us",
     "buttonActive": "Opening",
-    "copyright": "Zeeshan Munawar, 2026"
+    "copyright": "Zeeshan Munawar, 2026",
+    "buttonToMeeting": true,
+    "dockToMeeting": true
   }
 }

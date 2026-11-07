@@ -206,6 +206,21 @@ function tags(obj, key, opts = {}) {
 }
 
 /* ---------- images ---------- */
+// Recommended upload sizes (2× the size shown on a large screen, same ratio as the frame).
+const SIZES = {
+  card: '1476 × 1106 px (4:3) — home-page project card',
+  cover: '2308 × 1274 px (≈ 16:9) — keep important content away from the edges',
+  wide: '2308 × 1274 px (≈ 16:9)',
+  row: '1600 × 1200 px (4:3)',
+  galleryWeb: '1600 px wide, any height (desktop screenshot)',
+  galleryPhone: '780 × 1688 px (9:19.5) — one phone screen, no frame',
+  desk: '1600 × 1150 px (≈ 7:5) — edges may be trimmed to fill the box',
+  phone: '780 × 1688 px (9:19.5) — plain phone screen, the frame is added for you',
+  peek: '1200 × 900 px (4:3)',
+  about: '1422 × 1040 px (≈ 4:3)',
+  share: '1200 × 630 px (1.91:1)',
+};
+
 const MAX_UPLOAD = 2.9 * 1024 * 1024;
 async function prepareImage(file) {
   if (!/^image\//.test(file.type) || file.type === 'image/svg+xml') throw new Error('Choose a PNG, JPG, WebP, AVIF or GIF image.');
@@ -248,7 +263,7 @@ function image(obj, key, opts = {}) {
     thumb.classList.toggle('has', Boolean(v));
     thumb.style.backgroundImage = v ? `url("${imgSrc(v)}")` : '';
     thumb.textContent = v ? '' : 'No image';
-    pathEl.textContent = v || (opts.hint || '');
+    pathEl.textContent = v || 'No image yet';
     rm.hidden = !v || opts.required;
   };
   const doUpload = async (f) => {
@@ -265,7 +280,8 @@ function image(obj, key, opts = {}) {
   thumb.addEventListener('drop', (e) => { e.preventDefault(); thumb.classList.remove('drag'); doUpload(e.dataTransfer.files[0]); });
   draw();
   const pick = h('label', { class: 'btn btn--sm' }, obj[key] ? 'Replace image' : 'Upload image', file);
-  return fieldWrap({ ...opts, hint: null }, h('div', { class: 'img' }, thumb, h('div', {}, h('div', { class: 'img__actions' }, pick, rm), pathEl)));
+  const size = opts.size ? h('div', { class: 'img__size' }, h('b', {}, 'Best size: '), opts.size) : null;
+  return fieldWrap({ ...opts, hint: null, wide: opts.wide ?? true }, h('div', { class: 'img' }, thumb, h('div', {}, h('div', { class: 'img__actions' }, pick, rm), size, pathEl)));
 }
 
 /* ---------- repeatable list ---------- */
@@ -409,7 +425,14 @@ function pageOverview() {
         .map(([n, l]) => h('div', { class: 'card stat' }, h('b', {}, n), h('span', {}, l)))),
     h('div', { class: 'quick' },
       [['#/projects/new', 'Add a new project', 'Create a case study page with screens and details.'], ['#/projects', 'Edit projects', 'Change text, images, order, or hide a project.'], ['#/testimonials', 'Add a testimonial', 'Pin a real review from a client.'], ['#/hero', 'Edit the home hero', 'Heading and the numbers beside your photo.'], ['#/about', 'Update About me', 'Bio, photo and work timeline.'], ['#/history', 'Undo a change', 'Restore the site to an earlier save.']]
-        .map(([href, t, s]) => h('a', { class: 'card', href }, h('b', {}, t), h('span', {}, s))))));
+        .map(([href, t, s]) => h('a', { class: 'card', href }, h('b', {}, t), h('span', {}, s)))),
+    h('div', { class: 'card sizes' }, h('h2', {}, 'Image sizes'),
+      h('table', {}, h('tbody', {}, [
+        ['Home page · Project card', SIZES.card], ['Home page · More work hover preview', SIZES.peek], ['Home page · About photo', SIZES.about],
+        ['Project page · Cover', SIZES.cover], ['Project page · Wide image', SIZES.wide], ['Project page · Process / Structure / Solution', SIZES.row],
+        ['Project page · Gallery (web)', SIZES.galleryWeb], ['Project page · Gallery (phone)', SIZES.galleryPhone],
+        ['Project page · Large screen', SIZES.desk], ['Project page · Second screen (phone)', SIZES.phone], ['Share image (LinkedIn, WhatsApp)', SIZES.share],
+      ].map(([a, b]) => h('tr', {}, h('th', {}, a), h('td', {}, b))))))));
 }
 
 function pageProjects() {
@@ -551,7 +574,7 @@ function pageProject(key) {
         text(p, 'title', { label: 'Short title', hint: 'used in search results', required: true, max: 160, wide: true }),
         text(p, 'description', { label: 'Description', hint: 'one or two sentences for search results', area: true, max: 600, wide: true }),
         tags(p, 'cardTags', { label: 'Card tags', hint: 'up to 2 look best', maxItems: 4, wide: true }),
-        image(p, 'cardImage', { label: 'Home-page card image', hint: 'landscape, 738 × 553 or larger', required: true }),
+        image(p, 'cardImage', { label: 'Home-page card image', size: SIZES.card, required: true }),
         text(p, 'cardAlt', { label: 'Card image description', hint: 'for screen readers', max: 200 }),
         color(p, 'accent', { label: 'Accent colour', hint: 'numbers, dots, progress bar' }),
         color(p, 'accentInk', { label: 'Text colour on accent' }))),
@@ -559,7 +582,7 @@ function pageProject(key) {
     section('Top of the page', 'Details row, cover image and key numbers', false,
       list(p.meta, { label: 'Details row', fixed: true, title: (m) => m.label, render: (m, b) => b.append(grid(2, text(m, 'label', { label: 'Label', max: 40 }), text(m, 'value', { label: 'Value', max: 120 }))) }),
       grid(2,
-        image(p, 'coverImage', { label: 'Cover image', hint: 'wide, about 2300 × 1270', required: true }),
+        image(p, 'coverImage', { label: 'Cover image', size: SIZES.cover, required: true }),
         h('div', {}, text(p, 'coverCaption', { label: 'Cover caption', max: 120 }), toggle(p, 'lightCover', { label: 'Cover is light (dark project name)' }))),
       list(p.facts, { label: 'Key numbers', fixed: true, title: (f) => [f.value, f.label].filter(Boolean).join(' · '), render: (f, b) => b.append(grid(2, text(f, 'value', { label: 'Number', max: 12, placeholder: '14' }), text(f, 'label', { label: 'What it counts', max: 80, placeholder: 'Sidebar modules' }))) })),
 
@@ -568,7 +591,7 @@ function pageProject(key) {
       paras(p.challenge, 'paragraphs', { label: 'Paragraphs', max: 1200, maxItems: 6 })),
 
     section('Visual identity', 'Wide image, colours and fonts', false,
-      image(p, 'wideImage', { label: 'Wide image', hint: 'wide, about 2300 × 1270' }),
+      image(p, 'wideImage', { label: 'Wide image', size: SIZES.wide }),
       h('div', { class: 'field' }, h('div', { class: 'label' }, 'Colour palette (4)'), grid(4, ...[0, 1, 2, 3].map((i) => color(p.colors, i, { label: `Colour ${i + 1}` })))),
       grid(2,
         text(p.fonts, 'display', { label: 'Display font', max: 60 }), text(p.fonts, 'displayRole', { label: 'Used for', max: 40 }),
@@ -582,7 +605,7 @@ function pageProject(key) {
       list(p.rows, { fixed: true, title: (r) => `${r.eyebrow || ''}${r.heading ? ' — ' + r.heading : ''}`, render: (r, b) => b.append(
         grid(2, text(r, 'eyebrow', { label: 'Label', max: 40 }), text(r, 'heading', { label: 'Heading', max: 140 })),
         text(r, 'text', { label: 'Text', area: true, max: 1500 }),
-        grid(2, image(r, 'image', { label: 'Image', hint: 'device mockup or screen, 4:3 works best' }), text(r, 'caption', { label: 'Caption', max: 120 }))) })),
+        grid(2, image(r, 'image', { label: 'Image', size: SIZES.row }), text(r, 'caption', { label: 'Caption', max: 120 }))) })),
 
     section('The Outcome', 'Three results', false,
       list(p.outcome, { fixed: true, title: (o) => o.title, render: (o, b) => b.append(text(o, 'title', { label: 'Title', max: 80 }), text(o, 'text', { label: 'Text', area: true, max: 400 })) })),
@@ -590,13 +613,13 @@ function pageProject(key) {
     section('Screen gallery', 'Every screen opens large when clicked', false,
       toggle(p.gallery, 'phones', { label: 'Phone screens (4 per row, dark frames)' }),
       list(p.gallery.items, { addLabel: 'Add screen', collapsed: true, confirmDelete: false, max: 40, title: (g) => g.title, create: () => ({ image: '', title: '', subtitle: '' }),
-        render: (g, b) => b.append(grid(2, image(g, 'image', { label: 'Screen', required: true }), h('div', {}, text(g, 'title', { label: 'Title', max: 80 }), text(g, 'subtitle', { label: 'Subtitle', max: 120 })))) })),
+        render: (g, b) => b.append(grid(2, image(g, 'image', { label: 'Screen', size: p.gallery.phones ? SIZES.galleryPhone : SIZES.galleryWeb, required: true }), h('div', {}, text(g, 'title', { label: 'Title', max: 80 }), text(g, 'subtitle', { label: 'Subtitle', max: 120 })))) })),
 
     section('Every Screen', 'The two large screens at the end', false,
       select(p.screens, 'mode', { label: 'Layout', options: [['web', 'Two desktop screens'], ['phone', 'Desktop + phone']], onSelect: () => pv.refresh() }),
       grid(2,
-        image(p.screens.desktop, 'image', { label: 'Large screen' }), text(p.screens.desktop, 'caption', { label: 'Caption', max: 80 }),
-        image(p.screens.second, 'image', { label: 'Second screen', hint: 'for a phone, upload the plain screen' }), text(p.screens.second, 'caption', { label: 'Caption', max: 80 }))));
+        image(p.screens.desktop, 'image', { label: 'Large screen', size: SIZES.desk }), text(p.screens.desktop, 'caption', { label: 'Caption', max: 80 }),
+        image(p.screens.second, 'image', { label: 'Second screen', size: p.screens.mode === 'phone' ? SIZES.phone : SIZES.desk }), text(p.screens.second, 'caption', { label: 'Caption', max: 80 }))));
 
   // slug edits on new projects
   shell(p.name || 'Project', ['#/projects', 'Projects'], h('div', { class: 'page page--split' }, ed, pv.panel));
@@ -661,7 +684,7 @@ function pageMoreWork() {
       list(m.items, { max: 12, addLabel: 'Add row', collapsed: true, confirmDelete: true, title: (r) => r.name, create: () => ({ name: '', desc: '', tag: '', link: s.links.behance, image: '' }),
         render: (r, b) => b.append(grid(2, text(r, 'name', { label: 'Name', required: true, max: 60 }), text(r, 'tag', { label: 'Tag', max: 40 }),
           text(r, 'desc', { label: 'Description', max: 200, wide: true }), text(r, 'link', { label: 'Link', hint: '/projects/… or https://', max: 300, wide: true })),
-          image(r, 'image', { label: 'Hover preview image' })) })),
+          image(r, 'image', { label: 'Hover preview image', size: SIZES.peek })) })),
     section('Extra projects', 'Shown after “See all projects”, each links to Behance', false,
       list(m.extra, { max: 60, addLabel: 'Add project', collapsed: true, confirmDelete: true, title: (r) => r.name, create: () => ({ name: '', desc: '', tag: '', link: '' }),
         render: (r, b) => b.append(grid(2, text(r, 'name', { label: 'Name', required: true, max: 60 }), text(r, 'tag', { label: 'Tag', hint: 'optional', max: 40 }),
@@ -673,7 +696,7 @@ function pageAbout() {
   homePage('About & timeline', 'Your photo, bio and work history.',
     section('About', null, true,
       grid(2, text(a, 'eyebrow', { label: 'Label', max: 40 }), text(a, 'title', { label: 'Heading', max: 80 }), text(a, 'titleDim', { label: 'Heading, grey part', max: 60 }), text(a, 'photoAlt', { label: 'Photo description', max: 200 })),
-      image(a, 'photo', { label: 'Photo', hint: '711 × 520 or larger', required: true }),
+      image(a, 'photo', { label: 'Photo', size: SIZES.about, required: true }),
       text(a, 'bio', { label: 'Bio', area: true, rows: 6, required: true, max: 1500 })),
     section('Work timeline', 'Newest first', true,
       list(a.timeline, { max: 10, addLabel: 'Add job', title: (t) => `${t.role}${t.company ? ' · ' + t.company : ''}`, create: () => ({ role: '', company: '', from: '', to: 'Now' }),
@@ -707,11 +730,14 @@ function pageContact() {
     section('Your links', 'Used in the menu, About and footer', true, grid(2,
       text(l, 'email', { label: 'Email', required: true, max: 120 }), text(l, 'linkedin', { label: 'LinkedIn', max: 300 }),
       text(l, 'behance', { label: 'Behance', max: 300 }), text(l, 'instagram', { label: 'Instagram', max: 300 }), text(l, 'x', { label: 'X (Twitter)', max: 300 }),
+      text(l, 'meeting', { label: 'Meeting booking link', hint: 'e.g. your Cal.com or Calendly link', max: 300 }),
       toggle(S.site, 'projectMenuBehance', { label: 'Show Behance in the menu on project pages' }))),
     section('Contact card', null, true,
       grid(2, text(c, 'eyebrow', { label: 'Label', max: 60 }), text(c, 'copyright', { label: 'Copyright line', hint: 'after ©', max: 80 }), text(c, 'titleA', { label: 'Heading', max: 30 }), text(c, 'titleB', { label: 'Heading, grey part', max: 30 })),
       paras(c, 'text', { label: 'Text lines', max: 200, maxItems: 3 }),
-      grid(2, text(c, 'button', { label: 'Button', max: 30 }), text(c, 'buttonActive', { label: 'Button when clicked', max: 30 }))));
+      grid(2, text(c, 'button', { label: 'Button', max: 30 }), text(c, 'buttonActive', { label: 'Button when clicked', max: 30 }),
+        toggle(c, 'buttonToMeeting', { label: 'Button opens the meeting link', hint: 'off = it opens an email to you' }),
+        toggle(c, 'dockToMeeting', { label: '“Let’s Talk” button opens the meeting link', hint: 'off = it scrolls to this card' }))));
 }
 
 function pageSettings() {
@@ -724,7 +750,7 @@ function pageSettings() {
       text(s.seo, 'title', { label: 'Page title', required: true, max: 120 }),
       text(s.seo, 'description', { label: 'Search description', area: true, max: 300 }),
       text(s.seo, 'shareDescription', { label: 'Share description', hint: 'shown on LinkedIn, WhatsApp…', area: true, max: 300 }),
-      text(s.seo, 'ogImage', { label: 'Share image address', max: 300 })));
+      text(s.seo, 'ogImage', { label: 'Share image address', hint: SIZES.share, max: 300 })));
 }
 
 async function pageHistory() {

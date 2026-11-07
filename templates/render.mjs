@@ -61,8 +61,12 @@ function menuSocial(l, withBehance) {
   return `<div class="menu__social"><a class="menu__mail" href="mailto:${esc(l.email)}">${esc(l.email)}</a><a href="${esc(l.instagram)}" target="_blank" rel="noopener">Instagram</a><a href="${esc(l.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>${withBehance && l.behance ? `<a href="${esc(l.behance)}" target="_blank" rel="noopener">Behance</a>` : ''}<a href="${esc(l.x)}" target="_blank" rel="noopener">X (Twitter)</a></div>`;
 }
 
-const DOCK = `<div class="dock" data-dock>
-  <a class="zbtn zbtn--sm" href="#contact" data-label="Let’s Talk" data-label-active="Let’s Go">Let’s Talk</a>
+// A booking link opens in a new tab; otherwise buttons fall back to email / the contact card.
+const meetingOn = (site, flag) => Boolean(site.links.meeting && site.contact[flag]);
+const ext = ' target="_blank" rel="noopener"';
+
+const dock = (site) => `<div class="dock" data-dock>
+  <a class="zbtn zbtn--sm" href="${meetingOn(site, 'dockToMeeting') ? `${esc(site.links.meeting)}"${ext}` : '#contact"'} data-label="Let’s Talk" data-label-active="Let’s Go">Let’s Talk</a>
   <button class="dock__menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-burger>
     <span class="dock__lines" aria-hidden="true"><span></span><span></span><span></span></span>
   </button>
@@ -83,7 +87,7 @@ function contactFooter(site, home) {
       <p class="eyebrow eyebrow--dark" data-reveal><span>${esc(c.eyebrow)}</span></p>
       <h2 class="contact__title" data-split><span class="w">${esc(c.titleA)}</span> <span class="w dim">${esc(c.titleB)}</span></h2>
       <p class="contact__text" data-reveal style="--d:.15s">${text}</p>
-      <div data-reveal style="--d:.25s"><a class="zbtn zbtn--light" href="mailto:${esc(l.email)}" data-label="${esc(c.button)}" data-label-active="${esc(c.buttonActive)}">${esc(c.button)}</a></div>
+      <div data-reveal style="--d:.25s"><a class="zbtn zbtn--light" href="${meetingOn(site, 'buttonToMeeting') ? `${esc(l.meeting)}"${ext}` : `mailto:${esc(l.email)}"`} data-label="${esc(c.button)}" data-label-active="${esc(c.buttonActive)}">${esc(c.button)}</a></div>
       <a class="contact__mail" href="mailto:${esc(l.email)}" data-reveal style="--d:.3s">${esc(l.email)}</a>
     </div>
     <div class="contact__foot">
@@ -179,7 +183,7 @@ export function renderHome(site, projects) {
   </nav>
   ${menuSocial(l, true)}
 </div>
-${DOCK}
+${dock(site)}
 <main id="main">
   <section class="hero" id="top">
     <div class="hero__title" data-hero-title>
@@ -363,7 +367,7 @@ export function renderProject(p, site, projects) {
   <nav aria-label="Menu"><a href="/#top" style="--i:0"><small>01</small>Home</a><a href="/#about" style="--i:1"><small>02</small>About</a><a href="/#projects" style="--i:2"><small>03</small>Projects</a><a href="/#experts" style="--i:3"><small>04</small>Expertise</a><a href="#contact" style="--i:4"><small>05</small>Contact</a></nav>
   ${menuSocial(l, site.projectMenuBehance)}
 </div>
-${DOCK}
+${dock(site)}
 <main id="main">
   <section class="cs-hero" id="top">
     <div class="hero__title" data-hero-title>
