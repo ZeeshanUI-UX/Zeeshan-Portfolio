@@ -16,7 +16,7 @@ const sha256 = (s) => createHash('sha256').update(String(s)).digest();
 const b64url = (buf) => Buffer.from(buf).toString('base64url');
 
 function secrets() {
-  const key = process.env.ADMIN_KEY || '';
+  const key = process.env.ADMIN_KEY || process.env.ADMIN_TOKEN || '';
   const secret = process.env.SESSION_SECRET || '';
   if (key.length < MIN_KEY_LENGTH || secret.length < 32) return null;
   return { key, secret, keyId: sha256(key).toString('hex').slice(0, 16) };
