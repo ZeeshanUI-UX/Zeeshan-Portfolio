@@ -159,8 +159,7 @@ export function renderHome(site, projects) {
 `;
 
   return headTop(s.seo.title, s.seo.description, url, s.seo.ogImage, s.seo.shareDescription || s.seo.description) +
-`<link rel="preload" href="/assets/img/hero-hd-1.avif" as="image" type="image/avif" fetchpriority="high">
-<link rel="preload" href="/assets/img/hero-hd-2.avif" as="image" type="image/avif" fetchpriority="high">
+`<link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/hero-1600.avif 1600w, /assets/img/hero-2400.avif 2400w, /assets/img/hero-3200.avif 3200w" imagesizes="(max-width: 480px) 168vw, (max-width: 768px) 136vw, 100vw" fetchpriority="high">
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="stylesheet" href="/assets/upgrade.css">
 <link rel="stylesheet" href="/assets/testimonials.css">
@@ -192,7 +191,7 @@ ${dock(site)}
     </div>
     <div class="hero__stage">
       <div class="hero__media" data-hero-media>
-        <img src="/assets/img/hero-hd-1.avif" width="1800" height="1013" alt="${esc(h.photoAlt)}" fetchpriority="high"><img class="hero__layer" src="/assets/img/hero-hd-2.avif" width="1800" height="1013" alt="" aria-hidden="true" fetchpriority="high"><img class="hero__layer" src="/assets/img/hero-hd-3.avif" width="1800" height="1013" alt="" aria-hidden="true">
+        <img src="/assets/img/hero-2400.avif" srcset="/assets/img/hero-1600.avif 1600w, /assets/img/hero-2400.avif 2400w, /assets/img/hero-3200.avif 3200w" sizes="(max-width: 480px) 168vw, (max-width: 768px) 136vw, 100vw" width="3200" height="1693" alt="${esc(h.photoAlt)}" fetchpriority="high">
       </div>
       <dl class="stats" data-reveal style="--d:1.1s">
         ${stats}
