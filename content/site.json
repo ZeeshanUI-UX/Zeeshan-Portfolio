@@ -273,6 +273,15 @@
         "text": [
           "Zeeshan Bro is good in working. ompanies and quotes are invented, and none of those people said those things. On a portfolio"
         ]
+      },
+      {
+        "name": "Ayesha",
+        "role": "Artist",
+        "rating": 5,
+        "visible": true,
+        "text": [
+          "Hi, there When you get one, go to Testimonials → Add testimonial in your dashboard. Enter the person’s name, role and words, then Save & publish. That plus the invitation card makes two, and the arrows appear."
+        ]
       }
     ],
     "invite": {
