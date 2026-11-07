@@ -255,35 +255,7 @@
   },
   "testimonials": {
     "title": "Testimonials",
-    "items": [
-      {
-        "name": "Ramsha",
-        "role": "MERN Stack developer",
-        "rating": 5,
-        "visible": true,
-        "text": [
-          "He is a good boy. HE is an annoying person in the world. He is a very bad boy."
-        ]
-      },
-      {
-        "name": "Usman",
-        "role": "Designer",
-        "rating": 5,
-        "visible": true,
-        "text": [
-          "Zeeshan Bro is good in working. ompanies and quotes are invented, and none of those people said those things. On a portfolio"
-        ]
-      },
-      {
-        "name": "Ayesha",
-        "role": "Artist",
-        "rating": 5,
-        "visible": true,
-        "text": [
-          "Hi, there When you get one, go to Testimonials → Add testimonial in your dashboard. Enter the person’s name, role and words, then Save & publish. That plus the invitation card makes two, and the arrows appear."
-        ]
-      }
-    ],
+    "items": [],
     "invite": {
       "visible": true,
       "text": [
