@@ -1,0 +1,165 @@
+{
+  "slug": "blue-rota",
+  "order": 4,
+  "visible": true,
+  "name": "Blue Rota",
+  "cardTags": [
+    "Police · UK",
+    "Mobile & Web"
+  ],
+  "cardImage": "/assets/img/work/bluerota-card.webp",
+  "cardAlt": "Blue Rota police shift and pay app preview",
+  "title": "Shift, pay & overtime app for UK police",
+  "description": "Blue Rota helps UK police officers track shifts, leave, pay and overtime, lets their partners see the rota, and gives admins one place to set the Police Federation pay rules.",
+  "accent": "#4CAF50",
+  "accentInk": "#fff",
+  "lightCover": false,
+  "meta": [
+    {
+      "label": "Role",
+      "value": "Product & UI/UX Designer"
+    },
+    {
+      "label": "Project",
+      "value": "Officer app, family app, admin"
+    },
+    {
+      "label": "Discipline",
+      "value": "UX / UI · iOS & Android · Web"
+    },
+    {
+      "label": "Tools",
+      "value": "Figma · FigJam"
+    }
+  ],
+  "coverImage": "/assets/img/work/bluerota-cover.webp",
+  "coverCaption": "Officer app, family app and admin",
+  "facts": [
+    {
+      "value": "3",
+      "label": "Product surfaces"
+    },
+    {
+      "value": "69",
+      "label": "Screens and states"
+    },
+    {
+      "value": "18",
+      "label": "Functional modules"
+    },
+    {
+      "value": "6",
+      "label": "Overtime rule types"
+    }
+  ],
+  "challenge": {
+    "heading": "Making police pay rules readable",
+    "paragraphs": [
+      "Police officers work rotating shifts under detailed Federation rules for overtime, rest days, bank holidays and part-time pay. Most never know what they are owed, and their families can’t plan around the rota.",
+      "The rules themselves change: new pay scales each September, new bank holidays and high-demand days every year.",
+      "The goal: admins set the rules once, officers see their real numbers, and partners see the schedule."
+    ]
+  },
+  "wideImage": "/assets/img/work/bluerota-wide.webp",
+  "colors": [
+    "#4CAF50",
+    "#10263F",
+    "#E6F3E7",
+    "#FFE9B0"
+  ],
+  "fonts": {
+    "display": "Outfit",
+    "displayRole": "Display",
+    "body": "Inter",
+    "bodyRole": "Body",
+    "previewFont": "'Inter Display', Inter, sans-serif"
+  },
+  "modules": [
+    "Pay Scales",
+    "Calendar",
+    "Annual Leave",
+    "Overtime Rules",
+    "Forces",
+    "Part-Time",
+    "Users",
+    "Subscription",
+    "Onboarding",
+    "Today",
+    "Shift Calendar",
+    "Shift Patterns",
+    "Overtime Tracker",
+    "Partner Sync",
+    "Premium",
+    "Family Today",
+    "Family Calendar",
+    "Settings"
+  ],
+  "rows": [
+    {
+      "eyebrow": "The Process",
+      "heading": "The rules become the spec",
+      "text": "I turned the Federation rules into admin screens: pay scales by rank and version, bank holidays and high-demand days with multipliers, leave by years of service, six overtime rule types and part-time pro-rata formulas.",
+      "image": "/assets/img/work/bluerota-row1.webp",
+      "caption": "Admin · Pay scale management"
+    },
+    {
+      "eyebrow": "The Structure",
+      "heading": "Three products, one engine",
+      "text": "The admin dashboard holds the rules, a calculation layer turns them into hourly rates and multipliers, the officer app shows the results, and Partner Sync links an officer to a partner.",
+      "image": "/assets/img/work/bluerota-row2.webp",
+      "caption": "Calendar · shift types and sync days"
+    },
+    {
+      "eyebrow": "The Solution",
+      "heading": "Your shift, your numbers",
+      "text": "The Today tab shows a live shift ring with Extend Shift, plus leave, payday and overtime at a glance. Overtime entries move from Pending to Put Through, with the right rate applied.",
+      "image": "/assets/img/work/bluerota-row3.webp",
+      "caption": "Overtime tracker"
+    }
+  ],
+  "outcome": [
+    {
+      "title": "Rules in one place",
+      "text": "Admins update pay scales and multipliers once; the apps use them from the effective date."
+    },
+    {
+      "title": "Overtime made visible",
+      "text": "Officers see what each entry earns and what is still pending, and learn the rights they lose money on."
+    },
+    {
+      "title": "Family in the loop",
+      "text": "Partner Sync shows both rotas side by side, with the days you are both free."
+    }
+  ],
+  "gallery": {
+    "phones": true,
+    "items": [
+      {
+        "image": "/assets/img/work/br-1.webp",
+        "title": "Today",
+        "subtitle": "Live shift and stats"
+      },
+      {
+        "image": "/assets/img/work/br-2.webp",
+        "title": "Overtime",
+        "subtitle": "Earned and pending"
+      },
+      {
+        "image": "/assets/img/work/br-3.webp",
+        "title": "Calendar",
+        "subtitle": "Shift types and sync days"
+      }
+    ]
+  },
+  "screens": {
+    "mode": "phone",
+    "desktop": {
+      "image": "/assets/img/work/bluerota-desk.webp",
+      "caption": "Admin dashboard"
+    },
+    "second": {
+      "image": "/assets/img/work/br-1.webp",
+      "caption": "Officer app"
+    }
+  }
+}

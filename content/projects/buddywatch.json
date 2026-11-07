@@ -1,0 +1,159 @@
+{
+  "slug": "buddywatch",
+  "order": 2,
+  "visible": true,
+  "name": "BuddyWatch",
+  "cardTags": [
+    "Veteran Support",
+    "3 Web Panels"
+  ],
+  "cardImage": "/assets/img/work/buddywatch-card.webp",
+  "cardAlt": "BuddyWatch veteran support platform preview",
+  "title": "Veteran support platform · 3 web panels",
+  "description": "BuddyWatch by SixWatch is a veteran support platform with three web panels: one for the Veteran, one for the Advocate who supports them, and one for the community Partner who delivers services.",
+  "accent": "#0A358C",
+  "accentInk": "#fff",
+  "lightCover": false,
+  "meta": [
+    {
+      "label": "Role",
+      "value": "Product & UI/UX Designer"
+    },
+    {
+      "label": "Project",
+      "value": "Veteran support platform"
+    },
+    {
+      "label": "Discipline",
+      "value": "UX / UI · Web app · 3 panels"
+    },
+    {
+      "label": "Tools",
+      "value": "Figma · FigJam"
+    }
+  ],
+  "coverImage": "/assets/img/work/buddywatch-cover.webp",
+  "coverCaption": "Veteran, Advocate and Partner panels",
+  "facts": [
+    {
+      "value": "3",
+      "label": "Web panels, one design language"
+    },
+    {
+      "value": "6",
+      "label": "Roles in the system"
+    },
+    {
+      "value": "240+",
+      "label": "Prototype frames"
+    },
+    {
+      "value": "23",
+      "label": "Shared text styles"
+    }
+  ],
+  "challenge": {
+    "heading": "Support that keeps veterans in control",
+    "paragraphs": [
+      "Veterans, the peer advocates who support them and the community partners who deliver services all needed their own tools, but the work between them had to stay connected and private.",
+      "A veteran agrees before any referral is sent, recording needs its own consent, and each role sees only its own people and data.",
+      "The goal: three panels that share one shell and one vocabulary, with a crisis line visible on every screen."
+    ]
+  },
+  "wideImage": "/assets/img/work/buddywatch-wide.webp",
+  "colors": [
+    "#0D0C43",
+    "#0A358C",
+    "#C79F38",
+    "#F5F8FF"
+  ],
+  "fonts": {
+    "display": "Plus Jakarta Sans",
+    "displayRole": "Headings",
+    "body": "Inter",
+    "bodyRole": "Body",
+    "previewFont": "'Inter Display', Inter, sans-serif"
+  },
+  "modules": [
+    "Overview",
+    "My Veterans",
+    "Meetings",
+    "Mission Action Plan",
+    "Training & Credentials",
+    "Transition Readiness Plan",
+    "Referrals",
+    "Services",
+    "Training",
+    "Reports",
+    "Account Settings",
+    "Notifications"
+  ],
+  "rows": [
+    {
+      "eyebrow": "The Process",
+      "heading": "Six roles, three journeys",
+      "text": "I mapped who does what: the Veteran registers, gets matched and follows a plan; the Advocate enrolls, trains, meets, plans and refers; the Partner accepts, serves and closes each referral with an outcome. Staff, command and supervisors work through those panels.",
+      "image": "/assets/img/work/buddywatch-row1.webp",
+      "caption": "Partner · accept a referral"
+    },
+    {
+      "eyebrow": "The Structure",
+      "heading": "One shell, three panels",
+      "text": "Every desktop screen follows the same skeleton: sidebar, top bar, crisis notice, hero card, three stat cards and a two-column body. Only the content and vocabulary change by role.",
+      "image": "/assets/img/work/buddywatch-row2.webp",
+      "caption": "Veteran · Mission Action Plan"
+    },
+    {
+      "eyebrow": "The Solution",
+      "heading": "Every row says what’s next",
+      "text": "Screens were rewritten to be short and plain: each row says what happened and “Next: …”. Statuses, consent and approvals are visible where the decision is made, and states cover empty, overdue, blocked and could-not-load.",
+      "image": "/assets/img/work/buddywatch-row3.webp",
+      "caption": "Advocate · Overview"
+    }
+  ],
+  "outcome": [
+    {
+      "title": "Safety first",
+      "text": "A crisis notice on every screen, consent before every referral and separate consent for recording."
+    },
+    {
+      "title": "One design language",
+      "text": "The approved Veteran panel set the style; Advocate and Partner follow the same shell and components."
+    },
+    {
+      "title": "Wired prototypes",
+      "text": "Over 240 frames with numbered names and real links, so every button leads to a real screen."
+    }
+  ],
+  "gallery": {
+    "phones": false,
+    "items": [
+      {
+        "image": "/assets/img/work/bw-1.webp",
+        "title": "Advocate · Overview",
+        "subtitle": "Needs action, caseload, training"
+      },
+      {
+        "image": "/assets/img/work/bw-2.webp",
+        "title": "Partner · Referrals",
+        "subtitle": "Accept with start date"
+      },
+      {
+        "image": "/assets/img/work/bw-3.webp",
+        "title": "Veteran · Mission Action Plan",
+        "subtitle": "Goals, steps and documents"
+      }
+    ]
+  },
+  "screens": {
+    "mode": "web",
+    "desktop": {
+      "image": "/assets/img/work/buddywatch-desk.webp",
+      "caption": "Advocate panel"
+    },
+    "second": {
+      "image": "/assets/img/work/buddywatch-tab.webp",
+      "caption": "Veteran panel"
+    }
+  }
+}

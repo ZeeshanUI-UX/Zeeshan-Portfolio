@@ -1,0 +1,283 @@
+{
+  "person": {
+    "name": "Zeeshan Munawar",
+    "jobTitle": "UI/UX & Product Designer",
+    "worksFor": "Mercury Sols",
+    "country": "PK"
+  },
+  "seo": {
+    "title": "Zeeshan Munawar — UI/UX & Product Designer",
+    "description": "Zeeshan Munawar is a UI/UX and product designer with 2+ years designing web and mobile products, dashboards and design systems for international clients.",
+    "shareDescription": "UI/UX and product designer with 2+ years designing web and mobile products, dashboards and design systems for international clients.",
+    "ogImage": "https://zeeshan-munawar.vercel.app/assets/img/hero.webp"
+  },
+  "links": {
+    "email": "mmzeeshanm8082@gmail.com",
+    "instagram": "https://www.instagram.com/mshanm80/",
+    "linkedin": "https://www.linkedin.com/in/zeeshan-munawar-uiux/",
+    "behance": "https://www.behance.net/zeeshan8082",
+    "x": "https://x.com/Mrzeesh19117365"
+  },
+  "projectMenuBehance": false,
+  "hero": {
+    "script": "Meet the",
+    "title": "PRODUCT DESIGNER",
+    "ariaLabel": "Product Designer — Zeeshan Munawar",
+    "photoAlt": "Zeeshan Munawar seated on a brown leather chesterfield sofa",
+    "stats": [
+      {
+        "label": "Years",
+        "value": "2",
+        "suffix": "+"
+      },
+      {
+        "label": "Products",
+        "value": "20",
+        "suffix": "+"
+      }
+    ]
+  },
+  "hello": {
+    "eyebrow": "Hello!",
+    "text": "I turn complex business workflows into simple, clear web and mobile products that people enjoy using",
+    "chipsLeft": [
+      {
+        "label": "Design systems",
+        "icon": "grid",
+        "bg": "#FF5A1F",
+        "color": "#fff"
+      },
+      {
+        "label": "Dashboards",
+        "icon": "panel",
+        "bg": "#3A3A3A",
+        "color": "#9EF5C4"
+      },
+      {
+        "label": "User flows",
+        "icon": "search",
+        "bg": "#1BA6F5",
+        "color": "#fff"
+      }
+    ],
+    "chipsRight": [
+      {
+        "label": "Wireframing",
+        "icon": "flow",
+        "bg": "#35E07A",
+        "color": "#2343C4"
+      },
+      {
+        "label": "Prototyping",
+        "icon": "frame",
+        "bg": "#F7409B",
+        "color": "#fff"
+      },
+      {
+        "label": "Dev handoff",
+        "icon": "handoff",
+        "bg": "#FFD21F",
+        "color": "#5B2D00"
+      }
+    ]
+  },
+  "projectsSection": {
+    "eyebrow": "Selected Projects",
+    "title": "Recent Case Studies"
+  },
+  "moreWork": {
+    "title": "More work",
+    "buttonClosed": "See all projects",
+    "buttonOpen": "Show fewer projects",
+    "footnote": "20+ products in total. Full case studies on",
+    "items": [
+      {
+        "name": "Flujo",
+        "desc": "Healthcare platform · patient, appointment, treatment and payment flows",
+        "tag": "Web & Mobile",
+        "link": "/projects/flujo/",
+        "image": "/assets/img/strida.webp"
+      },
+      {
+        "name": "ACES Awards",
+        "desc": "Guest and event management · registration, seating, ceremonies",
+        "tag": "Dashboard",
+        "link": "/projects/aces-awards/",
+        "image": "/assets/img/bravo.webp"
+      },
+      {
+        "name": "DEUT",
+        "desc": "Enterprise resource platform · inventory, budgeting, procurement",
+        "tag": "ERP",
+        "link": "/projects/deut/",
+        "image": "/assets/img/nitro.webp"
+      },
+      {
+        "name": "Wepaak",
+        "desc": "Logistics platform · courier, import and export operations",
+        "tag": "Web",
+        "link": "/projects/wepaak/",
+        "image": "/assets/img/fargo.webp"
+      }
+    ],
+    "extra": [
+      {
+        "name": "MBA Interview Prep Simulator",
+        "desc": "AI-powered practice platform · from choosing a session to reviewing AI feedback",
+        "tag": "AI · Web",
+        "link": ""
+      },
+      {
+        "name": "Smart Angel",
+        "desc": "Smart home automation · security systems and connected devices",
+        "tag": "Mobile",
+        "link": ""
+      },
+      {
+        "name": "ACES Certification",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Cleaning App",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "AI Communication Hub",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Bidding",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Overlay Pix & Plana Event",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Baby Sitter",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Apprenticeships Hub (TOTC)",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Visa Board",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "UB App",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "PartnerPeer",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "My Pixel Mint",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Party Boat Cruises",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Year Planner",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Centsyble",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      },
+      {
+        "name": "Path",
+        "desc": "",
+        "tag": "",
+        "link": ""
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "About Me",
+    "title": "Designing products",
+    "titleDim": "since 2024",
+    "photo": "/assets/img/about.webp",
+    "photoAlt": "Portrait of Zeeshan Munawar",
+    "bio": "I’m a UI/UX and product designer with 2+ years of experience designing web and mobile products for international clients — 20+ products across construction, healthcare, events, logistics, finance and workforce management, including an AI-powered construction management platform. I turn complex business workflows into simple interfaces, build reusable design systems in Figma, and work closely with developers so what ships matches the design.",
+    "timeline": [
+      {
+        "role": "Associate Product & UI/UX Designer",
+        "company": "Mercury Sols",
+        "from": "Mar 2025",
+        "to": "Now"
+      },
+      {
+        "role": "UI/UX Designer (Project-based)",
+        "company": "Sledge",
+        "from": "Mar 2026",
+        "to": "Jun 2026"
+      },
+      {
+        "role": "UI/UX Designer",
+        "company": "DevFor",
+        "from": "Jul 2024",
+        "to": "Feb 2025"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "items": [],
+    "invite": {
+      "visible": true,
+      "text": [
+        "Hi there,",
+        "Worked with me on a product? I’d love to hear how it went — what worked, what changed for your team, and what you’d tell someone thinking of hiring me. Selected reviews will be pinned right here."
+      ],
+      "button": "Write a Review",
+      "buttonActive": "Thank You",
+      "emailSubject": "A review for Zeeshan",
+      "linkText": "or recommend me on LinkedIn ↗"
+    }
+  },
+  "contact": {
+    "eyebrow": "Open to remote & on-site roles",
+    "titleA": "Let's",
+    "titleB": "Connect",
+    "text": [
+      "Have a product to design or a role to fill?",
+      "I’m available for new projects, full-time roles, or just a chat."
+    ],
+    "button": "Email Me",
+    "buttonActive": "Opening",
+    "copyright": "Zeeshan Munawar, 2026"
+  }
+}

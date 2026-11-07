@@ -1,0 +1,207 @@
+{
+  "slug": "lucopets",
+  "order": 3,
+  "visible": true,
+  "name": "LucoPets",
+  "cardTags": [
+    "Pet Care",
+    "Web App"
+  ],
+  "cardImage": "/assets/img/work/lucopets-card.webp",
+  "cardAlt": "LucoPets pet-care web app preview",
+  "title": "Calm pet-care web app",
+  "description": "LucoPets is a calm pet-care web app. Owners plan daily care, grow a Care Garden through care journeys, keep memories and time capsules, celebrate milestones, share care with family and remember pets who have passed.",
+  "accent": "#309181",
+  "accentInk": "#1B3232",
+  "lightCover": true,
+  "meta": [
+    {
+      "label": "Role",
+      "value": "Product & UI/UX Designer"
+    },
+    {
+      "label": "Project",
+      "value": "Pet-care web app + admin panel"
+    },
+    {
+      "label": "Discipline",
+      "value": "UX / UI · Web app · Design system"
+    },
+    {
+      "label": "Tools",
+      "value": "Figma · FigJam"
+    }
+  ],
+  "coverImage": "/assets/img/work/lucopets-cover.webp",
+  "coverCaption": "Care, memories and a growing garden",
+  "facts": [
+    {
+      "value": "15",
+      "label": "User modules"
+    },
+    {
+      "value": "6",
+      "label": "Admin areas"
+    },
+    {
+      "value": "111",
+      "label": "Client answers applied"
+    },
+    {
+      "value": "1440",
+      "label": "Px web frame"
+    }
+  ],
+  "challenge": {
+    "heading": "Daily care that never feels like a chore",
+    "paragraphs": [
+      "Pet apps often nag: streaks at risk, sad pets, pushy upgrades. LucoPets wanted the opposite, a calm place to plan care and keep a pet’s whole story.",
+      "It had to cover daily tasks, health records, rewards, memories, family sharing and, with real care, grief when a pet passes.",
+      "The goal: warm, soft and reassuring screens where nothing earned is ever taken away."
+    ]
+  },
+  "wideImage": "/assets/img/work/lucopets-wide.webp",
+  "colors": [
+    "#309181",
+    "#FF6F00",
+    "#1B3232",
+    "#F9F5F1"
+  ],
+  "fonts": {
+    "display": "Cormorant Garamond",
+    "displayRole": "Display",
+    "body": "DM Sans",
+    "bodyRole": "Body",
+    "previewFont": "Georgia, 'Times New Roman', serif"
+  },
+  "modules": [
+    "Onboarding",
+    "Dashboard",
+    "Planner",
+    "Pet Profile",
+    "Care Garden",
+    "Journeys",
+    "Rewards",
+    "Legacy Timeline",
+    "Time Capsule",
+    "Celebration Concierge",
+    "Care Circle",
+    "Memorial",
+    "Subscription",
+    "Settings",
+    "Admin Panel"
+  ],
+  "rows": [
+    {
+      "eyebrow": "The Process",
+      "heading": "Rules from 111 client answers",
+      "text": "I turned the client’s answers into design principles every screen follows: calm, never negative; nothing earned is taken away; the garden is never locked; upgrade asks are gentle; grief is handled with care.",
+      "image": "/assets/img/work/lucopets-row1.webp",
+      "caption": "Planner · day view"
+    },
+    {
+      "eyebrow": "The Structure",
+      "heading": "A soft sidebar, eleven places",
+      "text": "A floating 120 px sidebar holds Dashboard, Planner, Pet Profile, Garden, Timeline, Celebrations, Capsules, Care Circle, Memorial, Rewards and Settings. A pet switcher in the top bar changes the active pet everywhere.",
+      "image": "/assets/img/work/lucopets-row2.webp",
+      "caption": "All pets dashboard"
+    },
+    {
+      "eyebrow": "The Solution",
+      "heading": "Care grows a garden",
+      "text": "Days of care grow the Care Garden through journeys with milestones at 25, 50, 75, 90 and 100%. Finished journeys become a Journey Book, then porcelain keepsakes in a cabinet.",
+      "image": "/assets/img/work/lucopets-row3.webp",
+      "caption": "Care Garden at 50%"
+    }
+  ],
+  "outcome": [
+    {
+      "title": "Calm by design",
+      "text": "No “streak at risk”, no sad pets. Mood words are only Attentive and Content."
+    },
+    {
+      "title": "Free stays generous",
+      "text": "Premium changes what can be created next; memories, badges and the garden stay free."
+    },
+    {
+      "title": "A ceramic look",
+      "text": "Soft 3D porcelain, warm cream and teal, with neumorphic buttons and real pet photos."
+    }
+  ],
+  "gallery": {
+    "phones": false,
+    "items": [
+      {
+        "image": "/assets/img/work/luco-02.webp",
+        "title": "Keepsake Cabinet",
+        "subtitle": "Rewards"
+      },
+      {
+        "image": "/assets/img/work/luco-09.webp",
+        "title": "Choose a journey",
+        "subtitle": "Care Garden"
+      },
+      {
+        "image": "/assets/img/work/luco-04.webp",
+        "title": "Memory detail",
+        "subtitle": "Timeline"
+      },
+      {
+        "image": "/assets/img/work/luco-10.webp",
+        "title": "Journey Book",
+        "subtitle": "Rewards"
+      },
+      {
+        "image": "/assets/img/work/luco-11.webp",
+        "title": "Pet Legacy Timeline",
+        "subtitle": "Filters and pins"
+      },
+      {
+        "image": "/assets/img/work/luco-08.webp",
+        "title": "Pet Profile",
+        "subtitle": "Health and badges"
+      },
+      {
+        "image": "/assets/img/work/luco-12.webp",
+        "title": "Seal a time capsule",
+        "subtitle": "Opens on a date"
+      },
+      {
+        "image": "/assets/img/work/luco-13.webp",
+        "title": "Celebration Concierge",
+        "subtitle": "Kits and steps"
+      },
+      {
+        "image": "/assets/img/work/luco-14.webp",
+        "title": "Care Circle",
+        "subtitle": "Chat and activity"
+      },
+      {
+        "image": "/assets/img/work/luco-15.webp",
+        "title": "Memorial keepsake",
+        "subtitle": "Export preview"
+      },
+      {
+        "image": "/assets/img/work/luco-16.webp",
+        "title": "Settings · Subscription",
+        "subtitle": "Free state"
+      },
+      {
+        "image": "/assets/img/work/luco-18.webp",
+        "title": "Admin · Edit kit",
+        "subtitle": "Free / Premium steps"
+      }
+    ]
+  },
+  "screens": {
+    "mode": "web",
+    "desktop": {
+      "image": "/assets/img/work/lucopets-desk.webp",
+      "caption": "Pet Legacy Timeline"
+    },
+    "second": {
+      "image": "/assets/img/work/lucopets-tab.webp",
+      "caption": "Journey Book"
+    }
+  }
+}

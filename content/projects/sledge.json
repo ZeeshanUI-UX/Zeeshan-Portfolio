@@ -1,0 +1,201 @@
+{
+  "slug": "sledge",
+  "order": 1,
+  "visible": true,
+  "name": "Sledge",
+  "cardTags": [
+    "Construction",
+    "Web App"
+  ],
+  "cardImage": "/assets/img/work/sledge-card.webp",
+  "cardAlt": "Sledge construction finance platform preview",
+  "title": "AI-powered construction finance platform",
+  "description": "Sledge is a desktop web app for construction subcontractors. It pulls bills out of email, ties every dollar to a project, chases lien waivers and pays vendors without leaving the job.",
+  "accent": "#E3B02F",
+  "accentInk": "#111",
+  "lightCover": false,
+  "meta": [
+    {
+      "label": "Role",
+      "value": "UI/UX Designer (project-based)"
+    },
+    {
+      "label": "Project",
+      "value": "AI construction platform · AP & job costing"
+    },
+    {
+      "label": "Discipline",
+      "value": "UX / UI · Web app · Dark UI"
+    },
+    {
+      "label": "Timeline",
+      "value": "Mar 2026 – Jun 2026"
+    }
+  ],
+  "coverImage": "/assets/img/work/sledge-cover.webp",
+  "coverCaption": "Inbox to paid, per project",
+  "facts": [
+    {
+      "value": "14",
+      "label": "Sidebar modules"
+    },
+    {
+      "value": "6",
+      "label": "Step project wizard"
+    },
+    {
+      "value": "2",
+      "label": "Step first-time setup"
+    },
+    {
+      "value": "4",
+      "label": "Bill states, import to paid"
+    }
+  ],
+  "challenge": {
+    "heading": "Construction runs on paper",
+    "paragraphs": [
+      "A subcontractor’s back office lives in inboxes, spreadsheets and folders of signed PDFs. AP teams retyped vendor bills, chased lien waivers by hand and found out at month end that balances didn’t match.",
+      "Nobody had one view of contract, billed, collected and cost per project, and the same invoice arriving from two inboxes could be paid twice.",
+      "The goal: one place where every bill, waiver and dollar is tied to the job it came from, and paying is one click."
+    ]
+  },
+  "wideImage": "/assets/img/work/sledge-wide.webp",
+  "colors": [
+    "#070707",
+    "#E3B02F",
+    "#1C1B1A",
+    "#F4F1EA"
+  ],
+  "fonts": {
+    "display": "Work Sans",
+    "displayRole": "Product UI",
+    "body": "Big Shoulders",
+    "bodyRole": "Case study",
+    "previewFont": "'Work Sans', Inter, sans-serif"
+  },
+  "modules": [
+    "Overview",
+    "Projects",
+    "Accounting",
+    "Bills",
+    "Invoices",
+    "Statements",
+    "Receipts",
+    "Purchase Orders",
+    "Lien Waivers",
+    "Prelims",
+    "Contracts",
+    "Vendors",
+    "Integrations",
+    "Legal · HR"
+  ],
+  "rows": [
+    {
+      "eyebrow": "The Process",
+      "heading": "Two connections, six short steps",
+      "text": "First-time setup asks for only two things: the inbox where bills arrive and the accounting platform. A new project is a six-step wizard, or one upload: drop a signed contract and Sledge fills the project in.",
+      "image": "/assets/img/work/sledge-row1.webp",
+      "caption": "Setup · Gmail / Outlook and QuickBooks"
+    },
+    {
+      "eyebrow": "The Structure",
+      "heading": "Every job on one map",
+      "text": "Projects sit in the middle of everything. They open as cards beside a live map, and each one has a photo banner with contract amount, client and timeline, plus Home and Accounting tabs.",
+      "image": "/assets/img/work/sledge-row2.webp",
+      "caption": "Projects · grid with map"
+    },
+    {
+      "eyebrow": "The Solution",
+      "heading": "From inbox to paid in four moves",
+      "text": "Bills move through Importing, Needs review, Approved and Paid. Review puts the PDF beside the form so nothing is retyped, duplicates are flagged before approval, and paying a batch goes through Stripe with the fee shown first.",
+      "image": "/assets/img/work/sledge-row3.webp",
+      "caption": "Bill detail · PDF, fields and duplicate warning"
+    }
+  ],
+  "outcome": [
+    {
+      "title": "Nothing retyped",
+      "text": "Bills are read straight out of Gmail and Outlook and checked side by side with the original PDF."
+    },
+    {
+      "title": "Job costs in view",
+      "text": "Receivables, payables and net cash lead every project, with expenses and profit margin below."
+    },
+    {
+      "title": "Gold does the pointing",
+      "text": "A dark UI for long sessions; one gold accent marks the active item and what needs attention."
+    }
+  ],
+  "gallery": {
+    "phones": false,
+    "items": [
+      {
+        "image": "/assets/img/work/sledge-06.webp",
+        "title": "Overview",
+        "subtitle": "Tasks, quick actions, activity"
+      },
+      {
+        "image": "/assets/img/work/sledge-03.webp",
+        "title": "Create a project",
+        "subtitle": "Step 2 of 6 · Client"
+      },
+      {
+        "image": "/assets/img/work/sledge-04.webp",
+        "title": "Project timeline",
+        "subtitle": "Step 4 of 6"
+      },
+      {
+        "image": "/assets/img/work/sledge-05.webp",
+        "title": "Upload a contract",
+        "subtitle": "Auto-create a project"
+      },
+      {
+        "image": "/assets/img/work/sledge-08.webp",
+        "title": "Project home",
+        "subtitle": "153 Sunset Blvd"
+      },
+      {
+        "image": "/assets/img/work/sledge-09.webp",
+        "title": "Project accounting",
+        "subtitle": "Expenses and profit"
+      },
+      {
+        "image": "/assets/img/work/sledge-10.webp",
+        "title": "Company accounting",
+        "subtitle": "All projects"
+      },
+      {
+        "image": "/assets/img/work/sledge-12.webp",
+        "title": "Bills · cards",
+        "subtitle": "By status"
+      },
+      {
+        "image": "/assets/img/work/sledge-13.webp",
+        "title": "Bills · list",
+        "subtitle": "Table view"
+      },
+      {
+        "image": "/assets/img/work/sledge-15.webp",
+        "title": "Pay a bill",
+        "subtitle": "Stripe fee shown first"
+      },
+      {
+        "image": "/assets/img/work/sledge-16.webp",
+        "title": "Pay multiple bills",
+        "subtitle": "Grouped by vendor"
+      }
+    ]
+  },
+  "screens": {
+    "mode": "web",
+    "desktop": {
+      "image": "/assets/img/work/sledge-desk.webp",
+      "caption": "Overview"
+    },
+    "second": {
+      "image": "/assets/img/work/sledge-tab.webp",
+      "caption": "Project accounting"
+    }
+  }
+}
