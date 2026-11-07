@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zeeshan-munawar.vercel.app/sitemap.xml

@@ -1,0 +1,502 @@
+/* ==========================================================================
+   upgrade.css — loaded after style.css
+   1. Animated primary button (.zbtn) — adapted from Uiverse.io by marcelodolza
+   2. Hero (Figma): fitted heading behind the portrait, stats
+   3. Header: logo + persistent dock (Let's Talk + menu icon)
+   4. Menu: circular reveal from the menu icon
+   ========================================================================== */
+
+/* ---------- 0. Fonts from the Figma hero ----------
+   Bayside, Photograph Signature and Relidux are commercial fonts, so free
+   look-alikes stand in. To use the originals, add @font-face rules for them
+   and put their names first in these stacks. */
+:root {
+  --f-hero: 'Bayside', 'League Gothic', 'Anton', 'Impact', sans-serif;
+  --f-hero-script: 'Photograph Signature', 'Ms Madi', 'Brush Script MT', cursive;
+  --f-num: 'Relidux', 'Orbitron', 'Inter', sans-serif;
+  --f-label: 'Reem Kufi Fun', 'Jost', sans-serif;
+  --f-btn: 'Reem Kufi Fun', 'Jost', sans-serif;
+  /* One interface face site-wide (labels, chips, meta, menu numbers), as in Figma */
+  --f-ui: 'Reem Kufi Fun', 'Jost', 'Futura', sans-serif;
+  --hero-ink: #030507;
+  --hero-olive: #a4a400;
+}
+
+/* ---------- 1. Primary button ---------- */
+.zbtn {
+  --zb-text: #F2F0EB;
+  --zb-100: #C9C2B6;
+  --zb-200: #4A4A4A;
+  --zb-300: #2A2A2A;
+  --zb-400: #0B0B0B;
+  --zb-500: #000000;
+  --zb-shadow: 11 11 11;
+  --zb-trace: #F2F0EB;
+  --zb-h: 64px;
+  --zb-min: 200px;
+  --zb-fs: 18px;
+  --zb-pad: 28px;
+  --zb-gap: 14px;
+  --radius: 18px;
+
+  position: relative;
+  display: inline-block;
+  min-width: var(--zb-min);
+  height: var(--zb-h);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  font-family: var(--f-btn);
+  font-size: var(--zb-fs);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  isolation: isolate;
+  flex: none;
+}
+.zbtn--sm { --zb-h: 48px; --zb-min: 148px; --zb-fs: 15px; --zb-pad: 18px; --zb-gap: 10px; --radius: 14px; }
+.zbtn--sm .bg::before { box-shadow: -5px 4px 0 0 rgb(var(--zb-shadow) / 25%), -10px 8px 2px 0 rgb(var(--zb-shadow) / 12%), -16px 12px 6px 0 rgb(var(--zb-shadow) / 6%); }
+.zbtn--tilt { transform: rotate(353deg) skewX(4deg); }
+.zbtn--light {
+  --zb-text: #0B0B0B;
+  --zb-100: #FFFFFF;
+  --zb-200: #FFFFFF;
+  --zb-300: #F2F0EB;
+  --zb-400: #C9C2B6;
+  --zb-500: #6B6B6B;
+  --zb-shadow: 0 0 0;
+  --zb-trace: #0B0B0B;
+}
+
+.zbtn .bg { display: block; position: absolute; inset: 0; border-radius: inherit; filter: blur(1px); }
+.zbtn .bg::before,
+.zbtn .bg::after { content: ""; position: absolute; inset: 0; border-radius: calc(var(--radius) * 1.1); background: var(--zb-500); }
+.zbtn .bg::before {
+  filter: blur(5px);
+  transition: all .3s ease;
+  box-shadow:
+    -7px 6px 0 0 rgb(var(--zb-shadow) / 30%),
+    -14px 12px 0 0 rgb(var(--zb-shadow) / 20%),
+    -21px 18px 4px 0 rgb(var(--zb-shadow) / 15%),
+    -28px 24px 8px 0 rgb(var(--zb-shadow) / 10%),
+    -35px 30px 12px 0 rgb(var(--zb-shadow) / 8%),
+    -42px 36px 16px 0 rgb(var(--zb-shadow) / 5%),
+    -56px 42px 20px 0 rgb(var(--zb-shadow) / 3%);
+}
+.zbtn .wrap {
+  display: block; position: relative; height: 100%;
+  border-radius: inherit; overflow: hidden;
+  transform: translate(6px, -6px);
+  padding: 3px;
+  background: linear-gradient(to bottom, var(--zb-100) 0%, var(--zb-400) 100%);
+  transition: all .3s ease;
+}
+.zbtn .outline { display: block; position: absolute; inset: 0; overflow: hidden; opacity: 0; border-radius: inherit; transition: all .4s ease; }
+.zbtn .outline::before {
+  content: ""; position: absolute; inset: 2px; margin: auto;
+  width: 120px; height: 300px;
+  background: linear-gradient(to right, transparent 0%, #fff 50%, transparent 100%);
+  animation: zb-spin 3s linear infinite;
+  animation-play-state: paused;
+}
+.zbtn .content {
+  position: relative; z-index: 1; height: 100%;
+  display: flex; align-items: center; justify-content: center; gap: var(--zb-gap);
+  padding: 0 var(--zb-pad);
+  border-radius: calc(var(--radius) * .85);
+  pointer-events: none;
+  transition: all .3s ease;
+  background: linear-gradient(to bottom, var(--zb-300) 0%, var(--zb-400) 100%);
+  box-shadow: inset -2px 12px 11px -5px var(--zb-200), inset 1px -3px 11px 0 rgb(0 0 0 / 35%);
+}
+.zbtn .content::before {
+  content: ""; position: absolute; inset: 0; z-index: 10; margin: auto;
+  width: 80%; top: 45%; bottom: 35%; opacity: .7;
+  background: linear-gradient(to bottom, transparent, var(--zb-400));
+  filter: brightness(1.3) blur(5px);
+}
+.zbtn .char { display: flex; align-items: center; justify-content: center; white-space: pre; transition: all .3s ease; }
+.zbtn .char span { display: block; position: relative; color: transparent; }
+.zbtn .char.state-1 span { animation: zb-charAppear 1.2s ease backwards calc(var(--i) * .03s); }
+.zbtn .char.state-1 span::before,
+.zbtn .char span::after { content: attr(data-label); position: absolute; left: 0; color: var(--zb-text); text-shadow: -1px 1px 2px var(--zb-500); }
+.zbtn .char span::before { opacity: 0; transform: translateY(-100%); }
+.zbtn .char.state-2 { position: absolute; left: 50%; translate: -50% 0; }
+.zbtn .char.state-2 span::after { opacity: 1; }
+.zbtn .icon { display: block; z-index: 10; animation: zb-resetArrow .8s cubic-bezier(.7,-.5,.3,1.2) forwards; }
+.zbtn .icon .arrow,
+.zbtn .icon .arrow::before,
+.zbtn .icon .arrow::after { height: 3px; border-radius: 1px; background-color: var(--zb-text); }
+.zbtn .icon .arrow::before,
+.zbtn .icon .arrow::after { content: ""; position: absolute; right: 0; width: 14px; border-radius: 15px; transform-origin: center right; transition: all .3s ease; }
+.zbtn .icon .arrow {
+  display: block; position: relative; width: 24px;
+  transform: scale(.9);
+  box-shadow: -2px 2px 5px var(--zb-400);
+  background: linear-gradient(to bottom, var(--zb-text), var(--zb-100));
+  animation: zb-swingArrow 1s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.zbtn--sm .icon .arrow { width: 20px; }
+.zbtn--sm .icon .arrow::before, .zbtn--sm .icon .arrow::after { width: 11px; }
+.zbtn .icon .arrow::before { top: 1px; transform: rotate(44deg); box-shadow: 1px -2px 3px -1px var(--zb-400); animation: zb-rotateArrowLine 1s linear infinite; animation-play-state: paused; }
+.zbtn .icon .arrow::after { bottom: 1px; transform: rotate(316deg); box-shadow: -2px 2px 3px 0 var(--zb-400); background: linear-gradient(200deg, var(--zb-text), var(--zb-100)); animation: zb-rotateArrowLine2 1s linear infinite; animation-play-state: paused; }
+.zbtn .path { position: absolute; z-index: 12; inset: 0; width: 100%; height: 100%; stroke: var(--zb-trace); stroke-dasharray: 150 480; stroke-dashoffset: 150; pointer-events: none; }
+.zbtn .splash { position: absolute; top: 50%; left: 50%; width: 155%; height: auto; translate: -50% -50%; stroke: var(--zb-400); stroke-dasharray: 60 60; stroke-dashoffset: 60; pointer-events: none; }
+.zbtn--light .splash { stroke: var(--zb-100); }
+
+.zbtn:hover .char.state-1 span::before { animation: zb-charAppear .7s ease calc(var(--i) * .03s); }
+.zbtn:hover .char.state-1 span::after { opacity: 1; animation: zb-charDisappear .7s ease calc(var(--i) * .03s); }
+.zbtn:hover .wrap { transform: translate(8px, -8px); }
+.zbtn:hover .outline { opacity: 1; }
+.zbtn:hover .outline::before,
+.zbtn:hover .icon .arrow,
+.zbtn:hover .icon .arrow::before,
+.zbtn:hover .icon .arrow::after { animation-play-state: running; }
+.zbtn:active .bg::before { opacity: .7; box-shadow: -7px 6px 0 0 rgb(var(--zb-shadow) / 30%), -14px 12px 0 0 rgb(var(--zb-shadow) / 18%), -21px 18px 4px 0 rgb(var(--zb-shadow) / 10%); }
+.zbtn:active .content { box-shadow: inset -1px 12px 8px -5px rgb(0 0 0 / 40%), inset 0 -3px 8px 0 var(--zb-200); }
+.zbtn:active .outline { opacity: 0; }
+.zbtn:active .wrap { transform: translate(3px, -3px); }
+.zbtn:active .splash { animation: zb-splash .8s cubic-bezier(.3,0,0,1) forwards .05s; }
+.zbtn:focus .path { animation: zb-path 1.6s ease forwards .2s; }
+.zbtn:focus .icon { animation: zb-arrow 1s cubic-bezier(.7,-.5,.3,1.5) forwards; }
+.zbtn .char.state-2 span::after,
+.zbtn:focus .char.state-1 span { animation: zb-charDisappear .5s ease forwards calc(var(--i) * .03s); }
+.zbtn:focus .char.state-2 span::after { animation: zb-charAppear 1s ease backwards calc(var(--i) * .03s); }
+.zbtn:focus-visible { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--ink); border-radius: var(--radius); }
+
+@keyframes zb-spin { to { transform: rotate(360deg); } }
+@keyframes zb-charAppear { 0% { transform: translateY(50%); opacity: 0; filter: blur(20px); } 20% { transform: translateY(70%); opacity: 1; } 50% { transform: translateY(-15%); opacity: 1; filter: blur(0); } 100% { transform: translateY(0); opacity: 1; } }
+@keyframes zb-charDisappear { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-70%); opacity: 0; filter: blur(3px); } }
+@keyframes zb-arrow { 0% { opacity: 1; } 50% { transform: translateX(60px); opacity: 0; } 51% { transform: translateX(-200px); opacity: 0; } 100% { transform: translateX(var(--arrow-shift, -128px)); opacity: 1; } }
+@keyframes zb-swingArrow { 50% { transform: translateX(5px) scale(.9); } }
+@keyframes zb-rotateArrowLine { 50% { transform: rotate(30deg); } 80% { transform: rotate(55deg); } }
+@keyframes zb-rotateArrowLine2 { 50% { transform: rotate(330deg); } 80% { transform: rotate(300deg); } }
+@keyframes zb-resetArrow { 0% { transform: translateX(var(--arrow-shift, -128px)); } 100% { transform: translateX(0); } }
+@keyframes zb-path { from { stroke: #fff; } to { stroke-dashoffset: -480; stroke: var(--zb-trace); } }
+@keyframes zb-splash { to { stroke-dasharray: 2 60; stroke-dashoffset: -60; } }
+
+/* Placement of buttons in the existing layout */
+.contact__body .zbtn { margin-top: clamp(36px, 3.2vw, 60px); }
+.contact__mail { display: inline-block; margin-top: 14px; color: #f2f2f2; border-bottom: 1px solid #555; transition: border-color .3s; }
+.contact__mail:hover { border-color: #f2f2f2; }
+.nf .zbtn { margin-top: 12px; }
+
+/* ---------- 2. Hero (Figma: "Portfolio" frame) ----------
+   The heading is sized by upgrade.js to a share of the page width (data-fit),
+   exposed as --hero-fs so the portrait overlap scales with it.
+   Each letter mask gets vertical room so tall glyphs are never clipped. */
+.display {
+  font-family: var(--f-hero);
+  font-weight: 400;
+  font-variation-settings: 'wdth' 75;
+  font-size: var(--hero-fs, clamp(54px, 12vw, 260px));
+  line-height: .9;
+  letter-spacing: 0;
+  transform: none;
+  padding: 0;
+  /* The ink-to-40% fade is a mask on the whole heading, not a per-letter
+     background-clip: Chrome can paint clipped letters as solid blocks while
+     they animate. */
+  color: var(--hero-ink);
+  -webkit-text-fill-color: currentColor;
+  background: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 20%, rgb(0 0 0 / .4) 100%);
+  mask-image: linear-gradient(180deg, #000 20%, rgb(0 0 0 / .4) 100%);
+}
+.display .ch { background: none; -webkit-background-clip: border-box; background-clip: border-box; }
+.display-mask { padding: .14em .02em .1em; margin: -.14em -.02em -.1em; }
+/* Until the intro starts the heading stays hidden, so the raw, unsized text
+   never flashes on first paint. */
+.js .display[data-chars]:not(.is-in) { visibility: hidden; }
+/* Intro: letters rise and un-tilt one after another */
+.js .display[data-chars] .ch { opacity: 0; transform: translateY(115%) rotate(7deg); transform-origin: 0 100%; }
+.js .display[data-chars].is-in .ch { opacity: 1; transform: none; transition: transform 1.3s cubic-bezier(.16, 1, .3, 1), opacity .5s ease; transition-delay: calc(var(--ci) * 45ms + .1s); }
+.hero__title { z-index: 0; }
+.hero__script {
+  font-family: var(--f-hero-script);
+  color: var(--hero-olive);
+  left: 50%;
+  top: -.42em;
+  font-size: calc(var(--hero-fs, 12vw) * .36);
+  line-height: 1.2;
+}
+/* The draw-in reveal clips the script; give its tall loops room on every side
+   so nothing is cut at the top (style.css only allowed 20%). */
+.js .hero__script[data-draw] { clip-path: inset(-80% 100% -80% -12%); }
+.js .hero__script[data-draw].is-in { clip-path: inset(-80% -12% -80% -12%); }
+.hero { padding-top: clamp(120px, 13vw, 250px); }
+/* Portrait rises so the hair overlaps the bottom of the heading.
+   3.5% = where the head starts in hero-hd.avif, as a share of its width. */
+.hero__media {
+  z-index: 1;
+  margin-top: calc(var(--hero-fs, 12vw) * -.22 - 3.5%);
+  pointer-events: none;
+}
+.hero__media img { -webkit-mask-image: none; mask-image: none; }
+/* The portrait ships as three stacked layers (same size, complementary bands)
+   so each file stays small; they line up pixel for pixel. */
+.hero__media .hero__layer { position: absolute; left: 0; top: 0; width: 100%; }
+/* Intro: the portrait rises out of a soft blur after the heading starts */
+.js .hero__media img { opacity: 0; transform: translateY(6%) scale(1.05); filter: blur(14px); }
+.hero__media.is-in img { opacity: 1; transform: none; filter: blur(0); transition: opacity 1.1s ease .35s, transform 1.9s cubic-bezier(.16, 1, .3, 1) .35s, filter 1.2s ease .35s; }
+/* The logo fades in with the dock */
+.nav__logo { animation: logo-in .9s cubic-bezier(.16, 1, .3, 1) .8s backwards; }
+@keyframes logo-in { from { opacity: 0; transform: translateY(-16px); } }
+.hero__media::after { height: 14%; }
+
+/* Stats (Figma: 352px wide, 40px from the right edge) */
+.stats { top: 31%; right: 2.8%; width: clamp(280px, 24.45vw, 470px); border-color: #d6d6d6; }
+.stats dd { font-family: var(--f-num); font-weight: 800; font-size: clamp(28px, 3.1vw, 60px); letter-spacing: 0; color: var(--hero-ink); line-height: 1.1; }
+.stats dt { font-family: var(--f-label); font-size: clamp(15px, 1.49vw, 28px); color: var(--hero-ink); }
+/* Right figure: block sits at the far edge, text left-aligned inside it (as in Figma);
+   the divider stays centred on the column border. */
+.stats > div + div { display: grid; justify-content: end; justify-items: start; align-content: start; padding-left: 0; }
+.stats > div + div dd { order: -1; }
+.stats > div + div dd, .stats > div + div dt { text-align: left; }
+
+/* Case study facts: an even 4-column grid instead of wrapping flex items */
+.cs-meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(1200px, 100% - var(--gutter) * 2); row-gap: 28px; }
+.cs-meta > div { padding: 2px clamp(16px, 2vw, 32px); }
+.cs-meta dt { font-family: var(--f-ui); font-size: clamp(13px, .9vw, 15px); letter-spacing: .04em; text-transform: uppercase; color: #9a9a9a; }
+.cs-meta dd { font-family: var(--f-ui); font-weight: 500; font-size: clamp(15px, 1.15vw, 20px); line-height: 1.35; margin-top: 8px; color: var(--ink); }
+
+/* ---------- 3. Header: logo + persistent dock (menu icon + CTA) ---------- */
+/* One grid for the whole header: logo, button and menu icon share the same top
+   offset, side margins and centre line, scrolled or not. */
+:root {
+  --nav-top: clamp(14px, 1.6vw, 26px);
+  --nav-x: clamp(16px, 2.8vw, 40px);
+  --dock-h: 66px;
+  --glass-fade: clamp(28px, 3vw, 44px);
+}
+.nav { pointer-events: none; transition: transform .6s var(--ease), opacity .4s var(--ease); }
+.nav, .nav.is-scrolled { padding: var(--nav-top) 0 0; }
+.nav__inner { z-index: 1; width: auto; height: var(--dock-h); margin: 0; padding-inline: var(--nav-x); align-items: center; }
+/* Glass: two blur layers (light, then strong at the very top) that fade out
+   downward, so content dissolves under the header instead of meeting a hard edge. */
+.nav::before, .nav::after {
+  content: ""; position: absolute; z-index: 0; left: 0; right: 0; top: 0;
+  pointer-events: none; border: 0; opacity: 0;
+  transition: opacity .5s var(--ease);
+}
+.nav::before {
+  bottom: calc(-1 * var(--glass-fade));
+  background: rgb(250 250 250 / .14);
+  backdrop-filter: blur(6px) saturate(1.6); -webkit-backdrop-filter: blur(6px) saturate(1.6);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+}
+.nav::after {
+  bottom: calc(-.35 * var(--glass-fade));
+  background: linear-gradient(180deg, rgb(250 250 250 / .5), rgb(250 250 250 / .08));
+  backdrop-filter: blur(18px) saturate(1.7); -webkit-backdrop-filter: blur(18px) saturate(1.7);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 100%);
+}
+.nav.is-scrolled::before, .nav.is-scrolled::after { opacity: 1; }
+.menu-open .nav::before, .menu-open .nav::after { opacity: 0; }
+.nav__logo { pointer-events: auto; }
+.nav__logo { display: grid; place-items: center; }
+.nav__logo img { width: clamp(40px, 3.2vw, 52px); }
+.nav.is-hidden { opacity: 0; }
+.dock {
+  position: fixed; z-index: 110;
+  top: var(--nav-top); right: var(--nav-x);
+  box-sizing: border-box; height: var(--dock-h);
+  display: flex; align-items: center; gap: 40px; /* 8px + 32px between Let's Talk and the menu icon */
+  padding: 0 8px;
+  border-radius: 80px;
+  background: rgb(235 235 235 / .9);
+  backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow: 0 18px 40px -22px rgb(0 0 0 / .35);
+  transition: background .5s var(--ease), box-shadow .5s var(--ease);
+  animation: dock-in .9s cubic-bezier(.34, 1.56, .64, 1) .9s backwards;
+}
+/* Scrolling down hides the dock together with the logo; scrolling up brings both
+   back (main.js sets .is-hidden on the header). Keyboard focus always shows it. */
+.dock { transition: background .5s var(--ease), box-shadow .5s var(--ease), transform .6s var(--ease), opacity .4s var(--ease); }
+.nav.is-hidden ~ .dock { transform: translateY(calc(-100% - 40px)); opacity: 0; pointer-events: none; }
+.nav.is-hidden ~ .dock:focus-within { transform: none; opacity: 1; pointer-events: auto; }
+@keyframes dock-in { from { opacity: 0; transform: translateY(-24px) scale(.92); } }
+.dock .zbtn { margin: 4px 0 0 6px; } /* the button's 3D face sits 6px up-right; this re-centres it */
+.menu-open .dock { background: rgb(255 255 255 / .08); box-shadow: 0 0 0 1px rgb(255 255 255 / .12); }
+
+.dock__menu {
+  position: relative; display: grid; place-items: center;
+  width: 50px; height: 50px; border-radius: 50%;
+  background: #fff; color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line);
+  overflow: hidden;
+  transition: color .5s var(--ease), transform .5s var(--ease);
+}
+.dock__menu::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: var(--ink);
+  transform: scale(0);
+  transition: transform .5s var(--ease);
+}
+.dock__menu:hover::before, .menu-open .dock__menu::before { transform: scale(1); }
+.dock__menu:hover, .menu-open .dock__menu { color: #F2F0EB; }
+.dock__menu:active { transform: scale(.94); }
+.dock__menu:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 50%; }
+.dock__lines { position: relative; z-index: 1; width: 20px; height: 14px; }
+.dock__lines span { position: absolute; right: 0; height: 1.6px; border-radius: 2px; background: currentColor; transition: transform .6s cubic-bezier(.34, 1.56, .64, 1), width .45s var(--ease), top .45s var(--ease), opacity .3s; }
+.dock__lines span:nth-child(1) { top: 0; width: 100%; }
+.dock__lines span:nth-child(2) { top: 6px; width: 70%; }
+.dock__lines span:nth-child(3) { top: 12px; width: 45%; }
+.dock__menu:hover .dock__lines span:nth-child(2) { width: 100%; transition-delay: .05s; }
+.dock__menu:hover .dock__lines span:nth-child(3) { width: 100%; transition-delay: .1s; }
+.menu-open .dock__lines span:nth-child(1) { top: 6px; width: 100%; transform: rotate(135deg); }
+.menu-open .dock__lines span:nth-child(2) { width: 0; opacity: 0; }
+.menu-open .dock__lines span:nth-child(3) { top: 6px; width: 100%; transform: rotate(-135deg); }
+
+/* ---------- 4. Menu: circular reveal from the menu button ---------- */
+.menu {
+  background: var(--dark); color: #F2F0EB;
+  padding: clamp(100px, 10vw, 160px) var(--gutter) clamp(28px, 3vw, 56px);
+  clip-path: circle(0px at var(--mx, calc(100% - 60px)) var(--my, 50px));
+  transition: clip-path .8s var(--ease-io), visibility 0s .8s;
+}
+.menu-open .menu { clip-path: circle(150vmax at var(--mx, calc(100% - 60px)) var(--my, 50px)); transition: clip-path 1s var(--ease-io); }
+.menu nav { gap: 0; margin-top: auto; }
+.menu nav a { font-size: clamp(48px, 7.4vw, 140px); line-height: 1.02; gap: clamp(14px, 1.6vw, 28px); width: max-content; transition: transform .9s var(--ease), opacity .8s var(--ease), color .4s var(--ease), letter-spacing .6s var(--ease); }
+.menu nav a small { color: #6b6b6b; transition: color .4s; }
+.menu nav:hover a { color: #3a3a3a; }
+.menu nav a:hover, .menu nav a:focus-visible { color: #F2F0EB; letter-spacing: .02em; }
+.menu nav a:hover small { color: #C9C2B6; }
+.menu-open .menu nav a { transition-delay: calc(.06s * var(--i) + .35s); }
+.menu-open .menu nav:hover a { transition-delay: 0s; }
+.menu__social { row-gap: 10px; color: #8d8d8d; flex-wrap: wrap; align-items: center; opacity: 0; transform: translateY(20px); transition: opacity .6s var(--ease), transform .8s var(--ease); }
+.menu-open .menu__social { opacity: 1; transform: none; transition-delay: .7s; }
+.menu__social a { transition: color .3s; }
+.menu__social a:hover { color: #F2F0EB; }
+.menu__social .menu__mail { margin-right: auto; color: #F2F0EB; }
+html.menu-open { overflow: hidden; }
+
+@media (max-width: 960px) {
+  .stats { top: auto; right: auto; }
+  .cs-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-meta > div:nth-child(3) { border-left: 0; }
+}
+@media (max-width: 768px) {
+  .hero { padding-top: 130px; }
+  /* image is 136% wide here (style.css), so the head offset scales too */
+  .hero__media { margin-top: calc(var(--hero-fs, 14vw) * -.22 - 4.76%); }
+}
+@media (max-width: 480px) {
+  .hero { padding-top: 120px; }
+  .hero__media { margin-top: calc(var(--hero-fs, 14vw) * -.22 - 5.88%); }
+  :root { --dock-h: 56px; }
+  .dock { padding: 0 6px; }
+  .dock .zbtn--sm { --zb-min: 124px; --zb-pad: 14px; --zb-fs: 14px; --zb-h: 44px; }
+  .dock__menu { width: 44px; height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zbtn *, .zbtn *::before, .zbtn *::after { animation: none !important; }
+  .zbtn .char.state-1 span::after { opacity: 1; }
+  .zbtn .char.state-2 { display: none; }
+  .menu, .menu-open .menu { clip-path: none; }
+  .dock, .nav__logo { animation: none; }
+  .js .hero__media img { filter: none !important; }
+}
+
+/* ---------- 5. Project pages: intro, scroll story, reading progress ----------
+   Same language as the home page: nothing half-loaded on first paint, then a
+   choreographed intro; each section tells its part as it scrolls in.
+   The script in upgrade.js adds the hooks (.is-ready, word masks, progress). */
+.cs-progress {
+  position: fixed; z-index: 130; left: 0; top: 0; width: 100%; height: 3px;
+  background: var(--hero-olive); transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+  pointer-events: none;
+}
+
+/* Intro: meta row waits for the heading, then the cover opens like a window */
+.js .cs-hero:not(.is-ready) .cs-meta > div { opacity: 0 !important; }
+.js .cs-hero .cs-cover { clip-path: inset(100% 8% 0 8% round var(--radius)); transition: clip-path 1.7s cubic-bezier(.16, 1, .3, 1) .55s; }
+.js .cs-hero .cs-cover.is-in { clip-path: inset(0 0 0 0 round var(--radius)); }
+.js .cs-cover img { transform: scale(1.22); transition: transform 2.4s cubic-bezier(.16, 1, .3, 1) .55s; }
+.js .cs-cover.is-in img { transform: none; }
+.cs-cover__name .cn { display: inline-block; }
+.js .cs-cover__name .cn { opacity: 0; transform: translateY(60%); }
+.js .cs-cover.is-in .cs-cover__name .cn { opacity: 1; transform: none; transition: transform 1.1s cubic-bezier(.16, 1, .3, 1), opacity .6s ease; transition-delay: calc(1.05s + var(--ci) * 45ms); }
+.js .cs-cover figcaption { clip-path: inset(-30% 100% -30% -5%); }
+.js .cs-cover.is-in figcaption { clip-path: inset(-30% -5% -30% -5%); transition: clip-path 1.4s cubic-bezier(.65, 0, .35, 1) 1.3s; }
+
+/* Section heads: the script word writes itself, the heading rises line by line */
+.js .cs-head .script, .js .cs-row__text .script, .js .cs-center .script, .js .cs-next .script {
+  clip-path: inset(-30% 100% -30% -5%);
+  transition: clip-path 1.3s cubic-bezier(.65, 0, .35, 1) .1s;
+}
+.js .in .cs-head .script, .js .cs-head.in .script, .js .cs-row__text.in .script, .js .cs-center.in .script, .js .cs-next.in .script { clip-path: inset(-30% -5% -30% -5%); }
+.anton .aw { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .02em .04em; margin: -.06em -.02em -.04em; }
+.anton .aw > span { display: inline-block; }
+.js .anton .aw > span { transform: translateY(108%); transition: transform 1.1s cubic-bezier(.16, 1, .3, 1); transition-delay: calc(.25s + var(--wi) * 70ms); }
+.js .in .anton .aw > span, .js .anton.in .aw > span { transform: none; }
+
+/* Body copy settles in from a soft blur */
+.js .cs-copy p[data-reveal], .js .cs-row__text p { filter: blur(6px); transition: opacity 1s var(--ease), transform 1.1s var(--ease), filter 1s ease; transition-delay: var(--d, 0s); }
+.js .cs-copy p[data-reveal].in { filter: none; }
+.js .cs-row__text p { opacity: 0; transform: translateY(18px); transition-delay: .45s; }
+.js .cs-row__text.in p { opacity: 1; transform: none; filter: none; }
+
+/* Process rows: the screen wipes open from the side it sits on, image settles */
+.js .cs-row__fig[data-reveal] { opacity: 1; transform: none; clip-path: inset(0 0 0 100% round clamp(14px, 1.3vw, 24px)); transition: clip-path 1.5s cubic-bezier(.65, 0, .35, 1) .1s; }
+.js .cs-row--flip .cs-row__fig[data-reveal] { clip-path: inset(0 100% 0 0 round clamp(14px, 1.3vw, 24px)); }
+.js .cs-row__fig[data-reveal].in { clip-path: inset(0 0 0 0 round clamp(14px, 1.3vw, 24px)); }
+.js .cs-row__fig[data-reveal] .cs-row__img img { transform: scale(1.18); transition: transform 2s cubic-bezier(.16, 1, .3, 1) .2s; }
+.js .cs-row__fig[data-reveal].in .cs-row__img img { transform: none; }
+.js .cs-row__fig[data-reveal].in:hover .cs-row__img img { transform: scale(1.03); transition-delay: 0s; }
+
+/* Colour swatches drop in like cards; fonts panel: big Aa rises */
+.js .cs-panel__label { opacity: 0; transform: translateY(30%); transition: opacity .8s ease .15s, transform 1s cubic-bezier(.16, 1, .3, 1) .15s; }
+.js .cs-panel.in .cs-panel__label { opacity: 1; transform: none; }
+.js .cs-colors li span { opacity: 0; transform: translateY(46px) rotate(-10deg) scale(.7); transition: transform .9s cubic-bezier(.34, 1.4, .64, 1), opacity .5s ease; }
+.js .cs-colors li:nth-child(2) span { transition-delay: .08s; }
+.js .cs-colors li:nth-child(3) span { transition-delay: .16s; }
+.js .cs-colors li:nth-child(4) span { transition-delay: .24s; }
+.js .cs-colors.in li span { opacity: 1; transform: none; }
+.js .cs-colors.in li:hover span { transform: translateY(-8px); transition-delay: 0s; }
+.js .cs-colors code { opacity: 0; transition: opacity .6s ease .7s; }
+.js .cs-colors.in code { opacity: 1; }
+.js .cs-fonts__spec .aa { display: inline-block; opacity: 0; transform: translateY(40%) scale(.9); letter-spacing: .1em; transition: transform 1.2s cubic-bezier(.16, 1, .3, 1) .2s, opacity .6s ease .2s, letter-spacing 1.4s cubic-bezier(.16, 1, .3, 1) .2s; }
+.js .cs-fonts.in .cs-fonts__spec .aa { opacity: 1; transform: none; letter-spacing: -.05em; }
+.js .cs-fonts__glyphs { opacity: 0; transform: translateY(12px); transition: opacity .8s ease .6s, transform 1s var(--ease) .6s; }
+.js .cs-fonts.in .cs-fonts__glyphs { opacity: 1; transform: none; }
+
+/* Outcome: a hairline draws above each point, numbers rise */
+.cs-three li { position: relative; padding-top: clamp(18px, 1.6vw, 28px); }
+.cs-three li::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: #2c2c2c; transform-origin: 0 50%; }
+.js .cs-three li::before { transform: scaleX(0); transition: transform 1.2s cubic-bezier(.65, 0, .35, 1) calc(var(--d, 0s) + .2s); }
+.js .cs-three li.in::before { transform: scaleX(1); }
+.js .cs-three b { display: inline-block; transform: translateY(40%); opacity: 0; transition: transform 1s cubic-bezier(.16, 1, .3, 1) calc(var(--d, 0s) + .3s), opacity .6s ease calc(var(--d, 0s) + .3s); }
+.js .cs-three li.in b { transform: none; opacity: 1; }
+
+/* Screens: desktop opens from below, the phone slides up and straightens */
+.js .cs-screen--desk[data-reveal] { opacity: 1; transform: none; clip-path: inset(100% 0 0 0 round var(--radius)); transition: clip-path 1.5s cubic-bezier(.65, 0, .35, 1); }
+.js .cs-screen--desk[data-reveal].in { clip-path: inset(0 0 0 0 round var(--radius)); }
+.js .cs-screen--mob .phone { transform: translateY(70px) rotate(-6deg); opacity: 0; transition: transform 1.4s cubic-bezier(.16, 1, .3, 1) .35s, opacity .8s ease .35s; }
+.js .cs-screen--mob.in .phone { transform: none; opacity: 1; }
+.cs-screen--mob:hover .phone { transform: translateY(-6px) rotate(1.5deg); transition-delay: 0s; }
+
+/* Next project: the rule draws across, the title rises */
+.js .cs-rule[data-reveal] { opacity: 1; transform: scaleX(0); transform-origin: 0 50%; transition: transform 1.4s cubic-bezier(.65, 0, .35, 1); }
+.js .cs-rule[data-reveal].in { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-progress { display: none; }
+  .js .cs-hero .cs-cover, .js .cs-cover img, .js .cs-cover__name .cn, .js .cs-cover figcaption,
+  .js .cs-head .script, .js .cs-row__text .script, .js .cs-center .script, .js .cs-next .script,
+  .js .anton .aw > span, .js .cs-copy p[data-reveal], .js .cs-row__text p, .js .cs-row__fig[data-reveal],
+  .js .cs-row__fig[data-reveal] .cs-row__img img, .js .cs-panel__label, .js .cs-colors li span, .js .cs-colors code,
+  .js .cs-fonts__spec .aa, .js .cs-fonts__glyphs, .js .cs-three li::before, .js .cs-three b,
+  .js .cs-screen--desk[data-reveal], .js .cs-screen--mob .phone, .js .cs-rule[data-reveal] {
+    opacity: 1 !important; transform: none !important; clip-path: none !important; filter: none !important; transition: none !important;
+  }
+  .js .cs-hero:not(.is-ready) .cs-meta > div { opacity: 1 !important; }
+}
