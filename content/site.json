@@ -255,7 +255,17 @@
   },
   "testimonials": {
     "title": "Testimonials",
-    "items": [],
+    "items": [
+      {
+        "name": "Ramsha",
+        "role": "MERN Stack developer",
+        "rating": 5,
+        "visible": true,
+        "text": [
+          "He is good boy. HE is annoying person in the world"
+        ]
+      }
+    ],
     "invite": {
       "visible": true,
       "text": [
