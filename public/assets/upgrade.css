@@ -500,3 +500,10 @@ html.menu-open { overflow: hidden; }
   }
   .js .cs-hero:not(.is-ready) .cs-meta > div { opacity: 1 !important; }
 }
+
+/* GIF-style videos (MP4/WebM uploaded from the dashboard) behave like the photos */
+.about__photo video { display: block; width: 100%; aspect-ratio: 711 / 520; object-fit: cover; transform: scale(1.04); }
+.hero__media video { display: block; width: 100%; height: auto; transform-origin: 50% 0; }
+.js .hero__media video { opacity: 0; transform: translateY(6%) scale(1.05); filter: blur(14px); }
+.hero__media.is-in video { opacity: 1; transform: none; filter: blur(0); transition: opacity 1.1s ease .35s, transform 1.9s cubic-bezier(.16, 1, .3, 1) .35s, filter 1.2s ease .35s; }
+@media (prefers-reduced-motion: reduce) { .js .hero__media video { opacity: 1 !important; transform: none !important; filter: none !important; } }

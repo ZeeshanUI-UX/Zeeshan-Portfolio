@@ -82,12 +82,12 @@
     setTimeout(() => { introDone = true; heroMediaImgs.forEach((im) => (im.style.transition = 'none')); req(); }, 2100);
   };
   let introDone = false;
-  const heroMediaImgs = $$('[data-hero-media] img'); // the portrait is stacked layers
+  const heroMediaImgs = $$('[data-hero-media] img, [data-hero-media] video'); // the portrait (image or GIF-style video)
   const heroMediaImg = heroMediaImgs[0];
   // Start the intro only once the fonts are in and the portrait is decoded, so
   // nothing half-loaded is ever shown (capped at 2.5s on slow connections).
   const gateImgs = heroMediaImgs.length ? heroMediaImgs : $$('.cs-cover img');
-  const ready = [document.fonts?.ready, ...gateImgs.map((im) => im.decode?.().catch(() => {}))].filter(Boolean);
+  const ready = [document.fonts?.ready, ...gateImgs.map((im) => (im.decode ? im.decode().catch(() => {}) : im.readyState >= 2 ? null : new Promise((r) => im.addEventListener('loadeddata', r, { once: true }))))].filter(Boolean);
   Promise.race([Promise.all(ready), new Promise((r) => setTimeout(r, 2500))])
     .then(() => requestAnimationFrame(() => requestAnimationFrame(intro)));
 
@@ -115,7 +115,7 @@
   const links = $$('.nav__links a');
 
   const heroTitle = $('[data-hero-title]');
-  const heroMedia = $$('[data-hero-media] img');
+  const heroMedia = $$('[data-hero-media] img, [data-hero-media] video');
   const showcase = $('[data-showcase]');
   const cols = $$('[data-col]');
   const tilt = $('[data-tilt]');

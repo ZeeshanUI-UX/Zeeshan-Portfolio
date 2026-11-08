@@ -217,14 +217,26 @@ const SIZES = {
   desk: '1600 × 1150 px (≈ 7:5) — edges may be trimmed to fill the box',
   phone: '780 × 1688 px (9:19.5) — plain phone screen, the frame is added for you',
   peek: '1200 × 900 px (4:3)',
-  about: '1422 × 1040 px (≈ 4:3)',
+  about: '1422 × 1040 px (≈ 4:3) — GIF or MP4 under 3 MB',
   share: '1200 × 630 px (1.91:1)',
+  hero: '3200 × 1693 px (≈ 1.9:1) — GIF or MP4 under 3 MB',
 };
 
 const MAX_UPLOAD = 2.9 * 1024 * 1024;
+async function isAnimatedWebp(file) {
+  const head = new Uint8Array(await file.slice(0, 64 * 1024).arrayBuffer());
+  for (let i = 12; i < head.length - 4; i++) if (head[i] === 0x41 && head[i + 1] === 0x4e && head[i + 2] === 0x49 && head[i + 3] === 0x4d) return true; // "ANIM"
+  return false;
+}
+const isVideoPath = (p) => /\.(mp4|webm)$/i.test(p || '');
 async function prepareImage(file) {
-  if (!/^image\//.test(file.type) || file.type === 'image/svg+xml') throw new Error('Choose a PNG, JPG, WebP, AVIF or GIF image.');
-  if (file.type === 'image/gif') { if (file.size > MAX_UPLOAD) throw new Error('GIFs must be under 3 MB.'); return file; }
+  const isVid = /^video\/(mp4|webm|quicktime)$/.test(file.type);
+  if ((!/^image\//.test(file.type) && !isVid) || file.type === 'image/svg+xml') throw new Error('Choose a PNG, JPG, WebP, AVIF or GIF image, or an MP4 / WebM video.');
+  // GIFs, videos and animated WebP are uploaded as they are, so they keep moving.
+  if (file.type === 'image/gif' || isVid || (file.type === 'image/webp' && await isAnimatedWebp(file))) {
+    if (file.size > MAX_UPLOAD) throw new Error(`${isVid ? 'Videos' : 'GIFs'} must be under 3 MB. Tip: an MP4 is usually 5–10× smaller than the same GIF.`);
+    return file;
+  }
   const bmp = await createImageBitmap(file);
   let width = Math.min(bmp.width, 2400), quality = 0.86;
   for (let tries = 0; tries < 6; tries++) {
@@ -256,13 +268,14 @@ const imgSrc = (p) => S.uploads.get(p) || p || '';
 function image(obj, key, opts = {}) {
   const thumb = h('div', { class: 'img__thumb' });
   const pathEl = h('div', { class: 'img__path' });
-  const file = h('input', { type: 'file', accept: 'image/png,image/jpeg,image/webp,image/avif,image/gif', class: 'sr' });
+  const file = h('input', { type: 'file', accept: 'image/png,image/jpeg,image/webp,image/avif,image/gif,video/mp4,video/webm', class: 'sr' });
   const rm = h('button', { class: 'btn btn--sm btn--ghost', type: 'button', onclick: () => { obj[key] = ''; draw(); changed(); } }, 'Remove');
   const draw = () => {
     const v = obj[key];
     thumb.classList.toggle('has', Boolean(v));
-    thumb.style.backgroundImage = v ? `url("${imgSrc(v)}")` : '';
-    thumb.textContent = v ? '' : 'No image';
+    thumb.style.backgroundImage = v && !isVideoPath(v) ? `url("${imgSrc(v)}")` : '';
+    thumb.textContent = v ? '' : (opts.emptyText || 'No image');
+    if (v && isVideoPath(v)) thumb.append(h('video', { src: imgSrc(v), autoplay: true, muted: true, loop: true, playsinline: true, style: { width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' } }));
     pathEl.textContent = v || 'No image yet';
     rm.hidden = !v || opts.required;
   };
@@ -428,7 +441,7 @@ function pageOverview() {
         .map(([href, t, s]) => h('a', { class: 'card', href }, h('b', {}, t), h('span', {}, s)))),
     h('div', { class: 'card sizes' }, h('h2', {}, 'Image sizes'),
       h('table', {}, h('tbody', {}, [
-        ['Home page · Project card', SIZES.card], ['Home page · More work hover preview', SIZES.peek], ['Home page · About photo', SIZES.about],
+        ['Home page · Project card', SIZES.card], ['Home page · More work hover preview', SIZES.peek], ['Home page · Hero photo', SIZES.hero], ['Home page · About photo', SIZES.about],
         ['Project page · Cover', SIZES.cover], ['Project page · Wide image', SIZES.wide], ['Project page · Process / Structure / Solution', SIZES.row],
         ['Project page · Gallery (web)', SIZES.galleryWeb], ['Project page · Gallery (phone)', SIZES.galleryPhone],
         ['Project page · Large screen', SIZES.desk], ['Project page · Second screen (phone)', SIZES.phone], ['Share image (LinkedIn, WhatsApp)', SIZES.share],
@@ -654,6 +667,9 @@ function pageHero() {
       text(s.hero, 'title', { label: 'Big heading', required: true, max: 40 }),
       text(s.hero, 'ariaLabel', { label: 'Heading for screen readers', max: 120, wide: true }),
       text(s.hero, 'photoAlt', { label: 'Photo description', max: 200, wide: true }))),
+    section('Photo', 'Your photo under the heading', true,
+      image(s.hero, 'photo', { label: 'Hero photo (image, GIF or short video)', size: SIZES.hero, emptyText: 'Current photo' }),
+      h('p', { class: 'hint' }, 'Leave empty to keep your current high-quality photo. A transparent background (PNG/WebP) or a video on the same light background looks best, with your head near the top edge.')),
     section('Numbers', 'e.g. 2+ Years, 20+ Products', true,
       list(s.hero.stats, { max: 4, addLabel: 'Add number', title: (x) => `${x.value}${x.suffix} ${x.label}`, create: () => ({ label: '', value: '', suffix: '+' }),
         render: (x, b) => b.append(grid(3, text(x, 'value', { label: 'Number', max: 6 }), text(x, 'suffix', { label: 'After', max: 4 }), text(x, 'label', { label: 'Label', max: 30 }))) })));
@@ -696,7 +712,7 @@ function pageAbout() {
   homePage('About & timeline', 'Your photo, bio and work history.',
     section('About', null, true,
       grid(2, text(a, 'eyebrow', { label: 'Label', max: 40 }), text(a, 'title', { label: 'Heading', max: 80 }), text(a, 'titleDim', { label: 'Heading, grey part', max: 60 }), text(a, 'photoAlt', { label: 'Photo description', max: 200 })),
-      image(a, 'photo', { label: 'Photo', size: SIZES.about, required: true }),
+      image(a, 'photo', { label: 'Photo (image, GIF or short video)', size: SIZES.about, required: true }),
       text(a, 'bio', { label: 'Bio', area: true, rows: 6, required: true, max: 1500 })),
     section('Work timeline', 'Newest first', true,
       list(a.timeline, { max: 10, addLabel: 'Add job', title: (t) => `${t.role}${t.company ? ' · ' + t.company : ''}`, create: () => ({ role: '', company: '', from: '', to: 'Now' }),

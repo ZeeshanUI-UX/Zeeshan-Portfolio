@@ -12,6 +12,11 @@ const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };
 export const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ESC[c]);
 const fix2 = (n) => n.toFixed(2);
 const img = (p) => esc(p || '');
+const isVideo = (p) => /\.(mp4|webm)$/i.test(p || '');
+// An uploaded MP4/WebM plays like a GIF: silent, looping, inline.
+const media = (src, alt, attrs = '') => isVideo(src)
+  ? `<video src="${img(src)}" autoplay muted loop playsinline preload="auto"${alt ? ` aria-label="${esc(alt)}" role="img"` : ' aria-hidden="true"'}${attrs}></video>`
+  : `<img src="${img(src)}" alt="${esc(alt)}"${attrs}>`;
 
 /* ---------- shared pieces ---------- */
 
@@ -159,7 +164,8 @@ export function renderHome(site, projects) {
 `;
 
   return headTop(s.seo.title, s.seo.description, url, s.seo.ogImage, s.seo.shareDescription || s.seo.description) +
-`<link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/hero-1600.avif 1600w, /assets/img/hero-2400.avif 2400w, /assets/img/hero-3200.avif 3200w" imagesizes="(max-width: 480px) 168vw, (max-width: 768px) 136vw, 100vw" fetchpriority="high">
+(h.photo ? '' : `<link rel="preload" as="image" type="image/avif" imagesrcset="/assets/img/hero-1600.avif 1600w, /assets/img/hero-2400.avif 2400w, /assets/img/hero-3200.avif 3200w" imagesizes="(max-width: 480px) 168vw, (max-width: 768px) 136vw, 100vw" fetchpriority="high">`) +
+`
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="stylesheet" href="/assets/upgrade.css">
 <link rel="stylesheet" href="/assets/testimonials.css">
@@ -191,7 +197,7 @@ ${dock(site)}
     </div>
     <div class="hero__stage">
       <div class="hero__media" data-hero-media>
-        <img src="/assets/img/hero-2400.avif" srcset="/assets/img/hero-1600.avif 1600w, /assets/img/hero-2400.avif 2400w, /assets/img/hero-3200.avif 3200w" sizes="(max-width: 480px) 168vw, (max-width: 768px) 136vw, 100vw" width="3200" height="1693" alt="${esc(h.photoAlt)}" fetchpriority="high">
+        ${h.photo ? media(h.photo, h.photoAlt, ' fetchpriority="high"') : `<img src="/assets/img/hero-2400.avif" srcset="/assets/img/hero-1600.avif 1600w, /assets/img/hero-2400.avif 2400w, /assets/img/hero-3200.avif 3200w" sizes="(max-width: 480px) 168vw, (max-width: 768px) 136vw, 100vw" width="3200" height="1693" alt="${esc(h.photoAlt)}" fetchpriority="high">`}
       </div>
       <dl class="stats" data-reveal style="--d:1.1s">
         ${stats}
@@ -241,7 +247,7 @@ ${mw.extra.length ? `        <button class="more__btn" type="button" aria-contro
     <div class="about__grid">
       <div class="about__left">
         <figure class="about__photo" data-tilt data-reveal>
-          <img src="${img(a.photo)}" width="711" height="520" alt="${esc(a.photoAlt)}" loading="lazy">
+          ${media(a.photo, a.photoAlt, ' width="711" height="520" loading="lazy"')}
         </figure>
         <div class="about__id" data-reveal style="--d:.15s">
           <ul class="socials">${socialIcons(l)}</ul>

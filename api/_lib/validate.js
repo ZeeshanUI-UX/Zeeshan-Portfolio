@@ -112,7 +112,7 @@ export function validateSite(s) {
     projectMenuBehance: Boolean(s.projectMenuBehance),
     hero: {
       script: t(s.hero?.script, 'Hero script line', 40), title: t(s.hero?.title, 'Hero heading', 40, true), ariaLabel: t(s.hero?.ariaLabel, 'Hero heading (screen readers)', 120),
-      photoAlt: t(s.hero?.photoAlt, 'Hero photo description', 200),
+      photo: image(s.hero?.photo, 'Hero photo'), photoAlt: t(s.hero?.photoAlt, 'Hero photo description', 200),
       stats: list(s.hero?.stats || [], 'Hero numbers', 4).map((x, i) => ({ label: t(x.label, `Number ${i + 1} label`, 30), value: t(x.value, `Number ${i + 1}`, 6), suffix: t(x.suffix, `Number ${i + 1} suffix`, 4) })),
     },
     hello: {
