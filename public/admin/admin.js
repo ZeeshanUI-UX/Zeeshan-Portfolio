@@ -208,7 +208,7 @@ function tags(obj, key, opts = {}) {
 /* ---------- images ---------- */
 // Recommended upload sizes (2× the size shown on a large screen, same ratio as the frame).
 const SIZES = {
-  card: '1476 × 1106 px (4:3) — home-page project card',
+  card: '1476 × 1106 px (4:3) — project showcase thumbnail',
   cover: '2308 × 1274 px (≈ 16:9) — keep important content away from the edges',
   wide: '2308 × 1274 px (≈ 16:9)',
   row: '1600 × 1200 px (4:3)',
@@ -587,10 +587,12 @@ function pageProject(key) {
         text(p, 'title', { label: 'Short title', hint: 'used in search results', required: true, max: 160, wide: true }),
         text(p, 'description', { label: 'Description', hint: 'one or two sentences for search results', area: true, max: 600, wide: true }),
         tags(p, 'cardTags', { label: 'Card tags', hint: 'up to 2 look best', maxItems: 4, wide: true }),
-        image(p, 'cardImage', { label: 'Home-page card image', size: SIZES.card, required: true }),
-        text(p, 'cardAlt', { label: 'Card image description', hint: 'for screen readers', max: 200 }),
         color(p, 'accent', { label: 'Accent colour', hint: 'numbers, dots, progress bar' }),
         color(p, 'accentInk', { label: 'Text colour on accent' }))),
+
+    section('Project showcase', 'Thumbnail used in the home-page showcase and Recent Case Studies cards', true,
+      image(p, 'cardImage', { label: 'Project showcase thumbnail', size: SIZES.card, required: true }),
+      text(p, 'cardAlt', { label: 'Thumbnail description', hint: 'for screen readers', max: 200 })),
 
     section('Top of the page', 'Details row, cover image and key numbers', false,
       list(p.meta, { label: 'Details row', fixed: true, title: (m) => m.label, render: (m, b) => b.append(grid(2, text(m, 'label', { label: 'Label', max: 40 }), text(m, 'value', { label: 'Value', max: 120 }))) }),

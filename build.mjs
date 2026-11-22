@@ -5,7 +5,9 @@ import { readFileSync, writeFileSync, mkdirSync, cpSync, rmSync, readdirSync, ex
 import { join } from 'node:path';
 import { renderHome, renderProject, renderSitemap } from './templates/render.mjs';
 
-const root = new URL('.', import.meta.url).pathname;
+import { fileURLToPath } from 'node:url';
+
+const root = fileURLToPath(new URL('.', import.meta.url));
 const out = join(root, 'dist');
 const read = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'));
 
