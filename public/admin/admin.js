@@ -276,7 +276,6 @@ function image(obj, key, opts = {}) {
     thumb.style.backgroundImage = v && !isVideoPath(v) ? `url("${imgSrc(v)}")` : '';
     thumb.textContent = v ? '' : (opts.emptyText || 'No image');
     if (v && isVideoPath(v)) thumb.append(h('video', { src: imgSrc(v), autoplay: true, muted: true, loop: true, playsinline: true, style: { width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' } }));
-    thumb.append(h('span', { class: 'img__thumb-edit' }, icon('edit'), 'Edit'));
     pathEl.textContent = v || 'No image yet';
     rm.hidden = !v || opts.required;
   };
@@ -288,23 +287,12 @@ function image(obj, key, opts = {}) {
     catch (err) { if (!err.silent) toast(err.message, 'bad'); }
     finally { spin.remove(); file.value = ''; }
   };
-  thumb.setAttribute('role', 'button');
-  thumb.setAttribute('tabindex', '0');
-  thumb.setAttribute('aria-label', opts.label ? `Edit ${opts.label.toLowerCase()}` : 'Edit image');
-  thumb.title = opts.label ? `Edit ${opts.label.toLowerCase()}` : 'Edit image';
-  thumb.addEventListener('click', () => file.click());
-  thumb.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      file.click();
-    }
-  });
   file.addEventListener('change', () => doUpload(file.files[0]));
   thumb.addEventListener('dragover', (e) => { e.preventDefault(); thumb.classList.add('drag'); });
   thumb.addEventListener('dragleave', () => thumb.classList.remove('drag'));
   thumb.addEventListener('drop', (e) => { e.preventDefault(); thumb.classList.remove('drag'); doUpload(e.dataTransfer.files[0]); });
   draw();
-  const pick = h('label', { class: 'btn btn--sm' }, obj[key] ? (opts.editLabel || 'Replace image') : (opts.uploadLabel || 'Upload image'), file);
+  const pick = h('label', { class: 'btn btn--sm' }, obj[key] ? 'Replace image' : 'Upload image', file);
   const size = opts.size ? h('div', { class: 'img__size' }, h('b', {}, 'Best size: '), opts.size) : null;
   return fieldWrap({ ...opts, hint: null, wide: opts.wide ?? true }, h('div', { class: 'img' }, thumb, h('div', {}, h('div', { class: 'img__actions' }, pick, rm), size, pathEl)));
 }
@@ -603,7 +591,7 @@ function pageProject(key) {
         color(p, 'accentInk', { label: 'Text colour on accent' }))),
 
     section('Project showcase', 'Thumbnail used in the home-page showcase and Recent Case Studies cards', true,
-      image(p, 'cardImage', { label: 'Project showcase thumbnail', editLabel: 'Edit thumbnail', uploadLabel: 'Upload thumbnail', size: SIZES.card, required: true }),
+      image(p, 'cardImage', { label: 'Project showcase thumbnail', size: SIZES.card, required: true }),
       text(p, 'cardAlt', { label: 'Thumbnail description', hint: 'for screen readers', max: 200 })),
 
     section('Top of the page', 'Details row, cover image and key numbers', false,
