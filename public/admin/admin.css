@@ -130,8 +130,11 @@ a { color: var(--acc); }
 
 /* image field */
 .img { display: grid; grid-template-columns: 160px 1fr; gap: 16px; align-items: start; }
-.img__thumb { width: 132px; aspect-ratio: 4 / 3; border-radius: 10px; background: var(--soft) center / cover no-repeat; border: 1px dashed #cfcfc6; display: grid; place-items: center; color: #a3a39c; font-size: 12px; overflow: hidden; position: relative; }
+.img__thumb { width: 132px; aspect-ratio: 4 / 3; border-radius: 10px; background: var(--soft) center / cover no-repeat; border: 1px dashed #cfcfc6; display: grid; place-items: center; color: #a3a39c; font-size: 12px; overflow: hidden; position: relative; cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease; }
 .img__thumb.has { border-style: solid; border-color: var(--line); }
+.img__thumb:hover, .img__thumb:focus-visible { border-color: var(--acc); box-shadow: 0 0 0 3px var(--acc-soft); outline: none; }
+.img__thumb-edit { position: absolute; right: 8px; bottom: 8px; display: inline-flex; align-items: center; gap: 4px; border-radius: 7px; padding: 5px 7px; background: rgb(17 17 17 / .88); color: #fff; font-size: 11px; line-height: 1; pointer-events: none; }
+.img__thumb-edit svg { width: 12px; height: 12px; }
 .img__thumb.drag { border-color: var(--acc); background-color: var(--acc-soft); }
 .img__thumb .spin { position: absolute; inset: 0; background: rgb(255 255 255 / .8); display: grid; place-items: center; font-size: 12px; color: var(--ink); }
 .img__actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
