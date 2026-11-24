@@ -2,14 +2,14 @@
   "slug": "buddywatch",
   "order": 2,
   "visible": true,
-  "name": "BuddyWatch",
+  "name": "PartnerPeer",
   "cardTags": [
     "Veteran Support",
     "3 Web Panels"
   ],
-  "cardImage": "/assets/img/work/buddywatch-card.webp",
+  "cardImage": "/assets/img/uploads/2026/frame-203-594417.webp",
   "cardAlt": "BuddyWatch veteran support platform preview",
-  "title": "Veteran support platform · 3 web panels",
+  "title": "PartnerPeer platform · 3 web panels",
   "description": "BuddyWatch by SixWatch is a veteran support platform with three web panels: one for the Veteran, one for the Advocate who supports them, and one for the community Partner who delivers services.",
   "accent": "#0A358C",
   "accentInk": "#fff",
