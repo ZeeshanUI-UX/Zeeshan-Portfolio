@@ -24,6 +24,7 @@
     "script": "Meet the",
     "title": "PRODUCT DESIGNER",
     "ariaLabel": "Product Designer — Zeeshan Munawar",
+    "photo": "",
     "photoAlt": "Zeeshan Munawar seated on a brown leather chesterfield sofa",
     "stats": [
       {
@@ -258,12 +259,12 @@
     "title": "Testimonials",
     "items": [
       {
-        "name": "Iron man",
-        "role": "MERN Stack developer",
+        "name": "Syed Arif Shah",
+        "role": "Owner",
         "rating": 5,
         "visible": true,
         "text": [
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. "
+          "It was a pleasure working with Muhammad Zeeshan on Portfolio.com. He did an outstanding job designing the UI/UX, portfolio layouts, and themes. His creativity, attention to detail, and understanding of user experience truly elevated the platform’s design. Zeeshan was professional, responsive, and always open to feedback — highly recommended for any UI/UX or web design projects!"
         ]
       }
     ],
