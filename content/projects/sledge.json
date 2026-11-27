@@ -32,7 +32,7 @@
       "value": "Mar 2026 – Jun 2026"
     }
   ],
-  "coverImage": "/assets/img/work/sledge-cover.webp",
+  "coverImage": "/assets/img/uploads/2026/1-93e4f9.webp",
   "coverCaption": "Inbox to paid, per project",
   "facts": [
     {
@@ -60,7 +60,7 @@
       "The goal: one place where every bill, waiver and dollar is tied to the job it came from, and paying is one click."
     ]
   },
-  "wideImage": "/assets/img/work/sledge-wide.webp",
+  "wideImage": "/assets/img/uploads/2026/2-c7e62e.webp",
   "colors": [
     "#070707",
     "#E3B02F",
@@ -95,21 +95,21 @@
       "eyebrow": "The Process",
       "heading": "Two connections, six short steps",
       "text": "First-time setup asks for only two things: the inbox where bills arrive and the accounting platform. A new project is a six-step wizard, or one upload: drop a signed contract and Sledge fills the project in.",
-      "image": "/assets/img/work/sledge-row1.webp",
+      "image": "/assets/img/uploads/2026/3-9cdb39.webp",
       "caption": "Setup · Gmail / Outlook and QuickBooks"
     },
     {
       "eyebrow": "The Structure",
       "heading": "Every job on one map",
       "text": "Projects sit in the middle of everything. They open as cards beside a live map, and each one has a photo banner with contract amount, client and timeline, plus Home and Accounting tabs.",
-      "image": "/assets/img/work/sledge-row2.webp",
+      "image": "/assets/img/uploads/2026/4-63bc1e.webp",
       "caption": "Projects · grid with map"
     },
     {
       "eyebrow": "The Solution",
       "heading": "From inbox to paid in four moves",
       "text": "Bills move through Importing, Needs review, Approved and Paid. Review puts the PDF beside the form so nothing is retyped, duplicates are flagged before approval, and paying a batch goes through Stripe with the fee shown first.",
-      "image": "/assets/img/work/sledge-row3.webp",
+      "image": "/assets/img/uploads/2026/5-a3cf31.webp",
       "caption": "Bill detail · PDF, fields and duplicate warning"
     }
   ],
